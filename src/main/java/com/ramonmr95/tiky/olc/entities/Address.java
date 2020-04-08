@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "address")
+@Table(name = "addresses")
 public class Address implements Serializable {
 
 	private static final long serialVersionUID = -8206923172718319240L;
