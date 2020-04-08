@@ -4,6 +4,7 @@ target/
 !**/src/main/**
 !**/src/test/**
 
+
 ### STS ###
 .apt_generated
 .classpath
@@ -22,6 +23,7 @@ target/
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
+/bin/
 /dist/
 /nbdist/
 /.nb-gradle/
