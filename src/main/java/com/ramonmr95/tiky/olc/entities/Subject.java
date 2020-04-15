@@ -1,8 +1,7 @@
 package com.ramonmr95.tiky.olc.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,12 +10,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "subject")
+@Table(name = "subjects")
 public class Subject implements Serializable {
 
 	private static final long serialVersionUID = -1941197654348468398L;
@@ -29,12 +28,8 @@ public class Subject implements Serializable {
 	@NotNull(message = "Name of subject can't be empty")
 	private String subjectName;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<Course> course;
-
-	public Subject() {
-		this.course = new HashSet<Course>();
-	}
+	@OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Exam> exams;
 
 	public Long getId() {
 		return id;
@@ -52,12 +47,12 @@ public class Subject implements Serializable {
 		this.subjectName = subjectName;
 	}
 
-	public Set<Course> getCourse() {
-		return course;
+	public List<Exam> getExams() {
+		return exams;
 	}
 
-	public void setCourse(Set<Course> course) {
-		this.course = course;
+	public void setExams(List<Exam> exams) {
+		this.exams = exams;
 	}
 
 }
