@@ -10,8 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,9 +29,11 @@ public class Exam implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "subject_id", nullable = false)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Subject subject;
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Course course;
 
 	@Temporal(TemporalType.DATE)
 	@NotNull(message = "The exam date is required")
@@ -60,6 +61,14 @@ public class Exam implements Serializable {
 		this.subject = subject;
 	}
 
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
 	public Date getDate() {
 		return date;
 	}
@@ -68,11 +77,11 @@ public class Exam implements Serializable {
 		this.date = date;
 	}
 
-	public double getMark() {
+	public Double getMark() {
 		return mark;
 	}
 
-	public void setMark(double mark) {
+	public void setMark(Double mark) {
 		this.mark = mark;
 	}
 
