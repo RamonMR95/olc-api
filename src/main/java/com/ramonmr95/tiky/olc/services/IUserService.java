@@ -13,8 +13,6 @@ public interface IUserService {
 
 	public User save(User user);
 
-	public User update(User user);
-
 	public void delete(Long id);
 
 	public Map<Double, String> findMarksAndSubjectsByStudentIdAndYearStart(Long id, String year);
