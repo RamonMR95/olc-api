@@ -1,5 +1,6 @@
 package com.ramonmr95.tiky.olc.services;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +14,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private IUserDao userDao;
-	
+
 	@Transactional(readOnly = true)
 	@Override
 	public User findOne(Long id) {
@@ -26,28 +27,25 @@ public class UserServiceImpl implements IUserService {
 		return (List<User>) this.userDao.findAll();
 	}
 
+	@Transactional
 	@Override
 	public User save(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.userDao.save(user);
 	}
 
-	@Override
-	public User update(User user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	@Transactional
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
-		
+		this.userDao.deleteById(id);
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public Map<Double, String> findMarksAndSubjectsByStudentIdAndYearStart(Long id, String year) {
-		// TODO Auto-generated method stub
-		return null;
+		Map<Double, String> marksMap = new HashMap<Double, String>();
+		List<Object[]> marksList = this.userDao.findMarkAndSubjectsByStudentIdAndYearStart(id, year);
+		marksList.forEach(mark -> marksMap.put((Double) mark[0], (String) mark[1]));
+		return marksMap;
 	}
 
 }
