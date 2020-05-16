@@ -10,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.modelmapper.ModelMapper;
+
+import com.ramonmr95.tiky.olc.dtos.AddressDto;
+
 @Entity
 @Table(name = "addresses")
 public class Address implements Serializable {
@@ -86,6 +90,10 @@ public class Address implements Serializable {
 
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	public AddressDto convertToDto() {
+		return new ModelMapper().map(this, AddressDto.class);
 	}
 
 }

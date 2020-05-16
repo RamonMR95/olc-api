@@ -17,7 +17,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.modelmapper.ModelMapper;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ramonmr95.tiky.olc.dtos.CourseDto;
 
 @Entity
 @Table(name = "courses")
@@ -50,6 +54,7 @@ public class Course implements Serializable {
 	@Column(nullable = false)
 	private String schedule;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Exam> exams;
 
@@ -99,6 +104,10 @@ public class Course implements Serializable {
 
 	public void setExams(List<Exam> exams) {
 		this.exams = exams;
+	}
+
+	public CourseDto convertToDto() {
+		return new ModelMapper().map(this, CourseDto.class);
 	}
 
 }

@@ -10,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.modelmapper.ModelMapper;
+
+import com.ramonmr95.tiky.olc.dtos.RoleDto;
+
 @Entity
 @Table(name = "roles")
 public class Role implements Serializable {
@@ -38,6 +42,10 @@ public class Role implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public RoleDto convertToDto() {
+		return new ModelMapper().map(this, RoleDto.class);
 	}
 
 }

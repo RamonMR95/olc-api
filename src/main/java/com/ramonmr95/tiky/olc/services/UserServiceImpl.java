@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ramonmr95.tiky.olc.entities.User;
 import com.ramonmr95.tiky.olc.repositories.IUserDao;
 
+@Service
 public class UserServiceImpl implements IUserService {
 
 	@Autowired
@@ -42,7 +44,7 @@ public class UserServiceImpl implements IUserService {
 	@Transactional(readOnly = true)
 	@Override
 	public Map<Double, String> findMarksAndSubjectsByStudentIdAndYearStart(Long id, String year) {
-		Map<Double, String> marksMap = new HashMap<Double, String>();
+		Map<Double, String> marksMap = new HashMap<>();
 		List<Object[]> marksList = this.userDao.findMarkAndSubjectsByStudentIdAndYearStart(id, year);
 		marksList.forEach(mark -> marksMap.put((Double) mark[0], (String) mark[1]));
 		return marksMap;
