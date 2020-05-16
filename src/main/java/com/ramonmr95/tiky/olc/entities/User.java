@@ -15,6 +15,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
+import org.modelmapper.ModelMapper;
+
+import com.ramonmr95.tiky.olc.dtos.UserDto;
+
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
@@ -25,15 +29,15 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "address_id", nullable = false)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id", nullable = true)
 	private Address address;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "role_id", nullable = false)
 	private Role role;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "course_id", nullable = true)
 	private Course course;
 
@@ -102,6 +106,22 @@ public class User implements Serializable {
 		this.name = name;
 	}
 
+	public String getSurName() {
+		return surName;
+	}
+
+	public void setSurName(String surName) {
+		this.surName = surName;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -124,6 +144,10 @@ public class User implements Serializable {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public UserDto convertToDto() {
+		return new ModelMapper().map(this, UserDto.class);
 	}
 
 }
