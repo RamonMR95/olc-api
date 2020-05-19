@@ -16,7 +16,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.modelmapper.ModelMapper;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ramonmr95.tiky.olc.dtos.ExamDto;
 
 @Entity
 @Table(name = "exams")
@@ -85,4 +88,8 @@ public class Exam implements Serializable {
 		this.mark = mark;
 	}
 
+	public ExamDto convertToDto() {
+		return new ModelMapper().map(this, ExamDto.class);
+	}
+	
 }

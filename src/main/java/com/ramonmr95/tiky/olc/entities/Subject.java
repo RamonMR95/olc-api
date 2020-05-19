@@ -14,6 +14,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.modelmapper.ModelMapper;
+
+import com.ramonmr95.tiky.olc.dtos.SubjectDto;
+
 @Entity
 @Table(name = "subjects")
 public class Subject implements Serializable {
@@ -55,4 +59,8 @@ public class Subject implements Serializable {
 		this.exams = exams;
 	}
 
+	public SubjectDto convertToDto() {
+		return new ModelMapper().map(this, SubjectDto.class);
+	}
+	
 }
