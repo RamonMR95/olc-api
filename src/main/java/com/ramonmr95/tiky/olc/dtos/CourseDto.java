@@ -20,7 +20,7 @@ public class CourseDto {
 
 	private String schedule;
 
-	private List<Exam> exams;
+	private List<ExamDto> exams;
 
 	public Long getId() {
 		return id;
@@ -62,11 +62,11 @@ public class CourseDto {
 		this.schedule = schedule;
 	}
 
-	public List<Exam> getExams() {
+	public List<ExamDto> getExams() {
 		return exams;
 	}
 
-	public void setExams(List<Exam> exams) {
+	public void setExams(List<ExamDto> exams) {
 		this.exams = exams;
 	}
 
