@@ -15,10 +15,17 @@ public interface IUserService {
 	public List<User> findAll();
 
 	public User save(UserDto userDto) throws EntityValidationException, DataNotFoundException;
-	
+
 	public User update(UserDto userDto, Long id) throws EntityValidationException, DataNotFoundException;
 
 	public void delete(Long id) throws DataNotFoundException;
 
 	public Map<Double, String> findMarksAndSubjectsByStudentIdAndYearStart(Long id, String year);
+
+	public List<User> findAllUsersPerCourse(Long course_id);
+
+	public User findByNickName(String nickName);
+
+	public User findByEmail(String email);
+
 }
