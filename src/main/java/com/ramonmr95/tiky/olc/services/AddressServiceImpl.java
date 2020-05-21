@@ -52,4 +52,10 @@ public class AddressServiceImpl implements IAddressService {
 		this.addressDao.deleteById(id);
 	}
 
+	@Transactional(readOnly = true)
+	@Override
+	public Address findAddressByUserId(Long id) {
+		return this.addressDao.findAddressByUserId(id);
+	}
+
 }
