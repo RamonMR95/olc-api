@@ -8,19 +8,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ramonmr95.tiky.olc.dtos.UserDto;
+import com.ramonmr95.tiky.olc.entities.Role;
 import com.ramonmr95.tiky.olc.entities.User;
+import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
+import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
 import com.ramonmr95.tiky.olc.repositories.IUserDao;
+import com.ramonmr95.tiky.olc.validators.EntityValidator;
 
 @Service
 public class UserServiceImpl implements IUserService {
+
+	@Autowired
+	private IRoleService roleServiceImpl;
+
+	private EntityValidator<User> entityValidator = new EntityValidator<>();
 
 	@Autowired
 	private IUserDao userDao;
 
 	@Transactional(readOnly = true)
 	@Override
-	public User findOne(Long id) {
-		return this.userDao.findById(id).orElse(null);
+	public User findOne(Long id) throws DataNotFoundException {
+		return this.userDao.findById(id)
+				.orElseThrow(() -> new DataNotFoundException("User with id: " + id + " could not be found."));
 	}
 
 	@Transactional(readOnly = true)
@@ -31,13 +42,39 @@ public class UserServiceImpl implements IUserService {
 
 	@Transactional
 	@Override
-	public User save(User user) {
-		return this.userDao.save(user);
+	public User update(UserDto userDto, Long id) throws DataNotFoundException, EntityValidationException {
+		User user = this.findOne(id);
+		Role role = this.roleServiceImpl.findOne(userDto.getRole().getId());
+		user.setRole(role);
+		user.setName(userDto.getName());
+		user.setSurName(userDto.getSurName());
+		user.setNickName(userDto.getNickName());
+		user.setEmail(userDto.getEmail());
+		user.setActive(userDto.isActive());
+
+		if (this.entityValidator.isEntityValid(user)) {
+			return this.userDao.save(user);
+		}
+		throw new EntityValidationException(this.entityValidator.getEntityValidationErrorsString(user));
 	}
 
 	@Transactional
 	@Override
-	public void delete(Long id) {
+	public User save(UserDto userDto) throws EntityValidationException, DataNotFoundException {
+		User user = userDto.convertToEntity();
+		Role role = this.roleServiceImpl.findOne(userDto.getRole().getId());
+		user.setRole(role);
+
+		if (this.entityValidator.isEntityValid(user)) {
+			return this.userDao.save(user);
+		}
+		throw new EntityValidationException(this.entityValidator.getEntityValidationErrorsString(user));
+	}
+
+	@Transactional
+	@Override
+	public void delete(Long id) throws DataNotFoundException {
+		this.findOne(id);
 		this.userDao.deleteById(id);
 	}
 
