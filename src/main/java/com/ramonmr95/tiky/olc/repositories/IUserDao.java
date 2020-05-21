@@ -15,5 +15,12 @@ public interface IUserDao extends CrudRepository<User, Long> {
 			+ "INNER JOIN courses co ON co.id = e.course_id " + "INNER JOIN users us ON us.course_id = co.id "
 			+ "INNER JOIN subjects sb ON sb.id = e.subject_id " + "WHERE us.id = ?1 AND co.year_start = ?2")
 	public List<Object[]> findMarkAndSubjectsByStudentIdAndYearStart(Long id, String year);
+
+	@Query(value = "SELECT u FROM User u WHERE course_id = ?1")
+	public List<User> findAllUsersPerCourse(Long course_id);
 	
+	public User findByNickName(String nickName);
+	
+	public User findByEmail(String email);
+
 }
