@@ -6,7 +6,6 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 
 import com.ramonmr95.tiky.olc.entities.Course;
-import com.ramonmr95.tiky.olc.entities.Exam;
 
 public class CourseDto {
 

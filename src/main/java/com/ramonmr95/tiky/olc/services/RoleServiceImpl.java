@@ -7,13 +7,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ramonmr95.tiky.olc.entities.Role;
-import com.ramonmr95.tiky.olc.repositories.IRolDao;
+import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
+import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
+import com.ramonmr95.tiky.olc.repositories.IRoleDao;
+import com.ramonmr95.tiky.olc.validators.EntityValidator;
 
 @Service
 public class RoleServiceImpl implements IRoleService {
 
 	@Autowired
-	private IRolDao roleDao;
+	private IRoleDao roleDao;
+
+	private EntityValidator<Role> entityValidator = new EntityValidator<>();
 
 	@Transactional(readOnly = true)
 	@Override
@@ -23,19 +28,27 @@ public class RoleServiceImpl implements IRoleService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public Role findOne(Long id) {
-		return this.roleDao.findById(id).orElse(null);
+	public Role findOne(Long id) throws DataNotFoundException {
+		if (id != null) {
+			return this.roleDao.findById(id)
+					.orElseThrow(() -> new DataNotFoundException("Role with id: " + id + " could not be found."));
+		}
+		throw new DataNotFoundException("Error role id is required");
 	}
 
 	@Transactional
 	@Override
-	public Role save(Role role) {
-		return this.roleDao.save(role);
+	public Role save(Role role) throws EntityValidationException {
+		if (this.entityValidator.isEntityValid(role)) {
+			return this.roleDao.save(role);
+		}
+		throw new EntityValidationException(this.entityValidator.getEntityValidationErrorsString(role));
 	}
 
 	@Transactional
 	@Override
-	public void delete(Long id) {
+	public void delete(Long id) throws DataNotFoundException {
+		this.findOne(id);
 		this.roleDao.deleteById(id);
 	}
 

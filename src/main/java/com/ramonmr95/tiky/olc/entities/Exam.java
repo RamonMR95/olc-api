@@ -91,5 +91,5 @@ public class Exam implements Serializable {
 	public ExamDto convertToDto() {
 		return new ModelMapper().map(this, ExamDto.class);
 	}
-	
+
 }

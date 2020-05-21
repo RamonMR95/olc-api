@@ -1,8 +1,6 @@
 package com.ramonmr95.tiky.olc.controllers;
 
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,13 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ramonmr95.tiky.olc.dtos.UserDto;
-import com.ramonmr95.tiky.olc.entities.Address;
-import com.ramonmr95.tiky.olc.entities.Course;
-import com.ramonmr95.tiky.olc.entities.Role;
 import com.ramonmr95.tiky.olc.entities.User;
-import com.ramonmr95.tiky.olc.services.IAddressService;
-import com.ramonmr95.tiky.olc.services.ICourseService;
-import com.ramonmr95.tiky.olc.services.IRoleService;
+import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
+import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
+import com.ramonmr95.tiky.olc.parsers.JsonParser;
 import com.ramonmr95.tiky.olc.services.IUserService;
 
 @RestController
@@ -33,92 +28,61 @@ public class UserController {
 	@Autowired
 	private IUserService userServiceImpl;
 
-	@Autowired
-	private IRoleService rolServiceImpl;
-
-	@Autowired
-	private ICourseService courseServiceImpl;
-
-	@Autowired
-	private IAddressService addressServiceImpl;
+	private JsonParser parser = new JsonParser();
 
 	@GetMapping("/users")
 	public ResponseEntity<?> list() {
-		Map<String, Object> res = new ConcurrentHashMap<>();
-		List<User> students = this.userServiceImpl.findAll();
+		List<User> users = this.userServiceImpl.findAll();
 
-		if (students != null) {
-			return new ResponseEntity<>(students, HttpStatus.OK);
+		if (users != null) {
+			return new ResponseEntity<>(users, HttpStatus.OK);
 		}
-		res.put("error", "Error there are not any users on the db");
-		return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(this.parser.parseToMap("errors", "There are not any users on the db"),
+				HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping("/user")
 	public ResponseEntity<?> getUser(@RequestParam Long id) {
-		Map<String, Object> res = new ConcurrentHashMap<>();
-		User user = this.userServiceImpl.findOne(id);
-
-		if (user != null) {
+		try {
+			User user = this.userServiceImpl.findOne(id);
 			return new ResponseEntity<>(user, HttpStatus.OK);
+		} catch (DataNotFoundException e) {
+			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
 		}
-		res.put("error", "Error there is not any user with id: " + id);
-		return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
+
 	}
 
 	@PostMapping(path = "/create", produces = { "application/json" }, consumes = { "application/json" })
 	public ResponseEntity<?> createUser(@RequestBody UserDto userDto) {
-		Map<String, Object> res = new ConcurrentHashMap<>();
-		User user = convertToUser(userDto);
-		this.userServiceImpl.save(user);
-		res.put("user", user);
-		return new ResponseEntity<>(res, HttpStatus.CREATED);
+		try {
+			User user = this.userServiceImpl.save(userDto);
+			return new ResponseEntity<>(user, HttpStatus.CREATED);
+		} catch (EntityValidationException e) {
+			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.BAD_REQUEST);
+		} catch (DataNotFoundException e) {
+			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
+		}
 	}
 
 	@PutMapping(path = "/user", produces = { "application/json" }, consumes = { "application/json" })
 	public ResponseEntity<?> updateUser(@RequestBody UserDto userDto, @RequestParam Long id) {
-		Map<String, Object> res = new ConcurrentHashMap<>();
-		User updatedUser = updateUserDataById(id, userDto);
-		res.put("user", updatedUser);
-		return new ResponseEntity<>(res, HttpStatus.OK);
+		try {
+			User updatedUser = this.userServiceImpl.update(userDto, id);
+			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+		} catch (DataNotFoundException | EntityValidationException e) {
+			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.BAD_REQUEST);
+		}
+
 	}
 
 	@DeleteMapping("/user")
 	public ResponseEntity<?> deleteUser(@RequestParam Long id) {
-		Map<String, Object> res = new ConcurrentHashMap<>();
-		User user = this.userServiceImpl.findOne(id);
-		if (user != null) {
+		try {
 			this.userServiceImpl.delete(id);
-			res.put("user", user);
-			return new ResponseEntity<>(res, HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>("Deleted user with id: " + id, HttpStatus.NO_CONTENT);
+		} catch (DataNotFoundException e) {
+			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	}
-
-	private User convertToUser(UserDto userDto) {
-		User user = userDto.convertToEntity();
-		Course course = this.courseServiceImpl.findOne(userDto.getCourse().getId());
-		Role role = this.rolServiceImpl.findOne(userDto.getRole().getId());
-		Address address = userDto.getAddress().convertToEntity();
-
-		user.setCourse(course);
-		user.setRole(role);
-		user.setAddress(address);
-		return user;
-	}
-
-	private User updateUserDataById(Long id, UserDto userDto) {
-		User oldUser = this.userServiceImpl.findOne(id);
-		oldUser.setAddress(this.addressServiceImpl.findOne(userDto.getAddress().getId()));
-		oldUser.setRole(this.rolServiceImpl.findOne(userDto.getRole().getId()));
-		oldUser.setCourse(this.courseServiceImpl.findOne(userDto.getCourse().getId()));
-		oldUser.setName(userDto.getName());
-		oldUser.setSurName(userDto.getSurName());
-		oldUser.setNickName(userDto.getNickName());
-		oldUser.setEmail(userDto.getEmail());
-		oldUser.setActive(userDto.isActive());
-		this.userServiceImpl.save(oldUser);
-		return oldUser;
 	}
 
 }

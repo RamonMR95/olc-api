@@ -54,8 +54,8 @@ public class Course implements Serializable {
 	@Column(nullable = false)
 	private String schedule;
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore()
+	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Exam> exams;
 
 	public Long getId() {
