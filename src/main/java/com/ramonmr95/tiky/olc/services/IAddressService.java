@@ -15,4 +15,7 @@ public interface IAddressService {
 	public Address save(Address address) throws EntityValidationException;
 
 	public void delete(Long id) throws DataNotFoundException;
+	
+	public Address findAddressByUserId(Long id);
+
 }

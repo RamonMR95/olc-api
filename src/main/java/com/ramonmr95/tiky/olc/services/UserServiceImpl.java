@@ -87,4 +87,22 @@ public class UserServiceImpl implements IUserService {
 		return marksMap;
 	}
 
+	@Transactional(readOnly = true)
+	@Override
+	public List<User> findAllUsersPerCourse(Long course_id) {
+		return this.userDao.findAllUsersPerCourse(course_id);
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public User findByNickName(String nickName) {
+		return this.userDao.findByNickName(nickName);
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public User findByEmail(String email) {
+		return this.userDao.findByEmail(email);
+	}
+
 }
