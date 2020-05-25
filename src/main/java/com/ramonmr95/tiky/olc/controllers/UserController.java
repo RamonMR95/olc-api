@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,10 +20,11 @@ import com.ramonmr95.tiky.olc.entities.User;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
 import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
 import com.ramonmr95.tiky.olc.parsers.JsonParser;
-import com.ramonmr95.tiky.olc.services.IUserService;
+import com.ramonmr95.tiky.olc.services.interfaces.IUserService;
 
+@CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/users")
 public class UserController {
 
 	@Autowired
@@ -30,7 +32,7 @@ public class UserController {
 
 	private JsonParser parser = new JsonParser();
 
-	@GetMapping("/users")
+	@GetMapping("/list")
 	public ResponseEntity<?> list() {
 		List<User> users = this.userServiceImpl.findAll();
 
@@ -41,7 +43,7 @@ public class UserController {
 				HttpStatus.NOT_FOUND);
 	}
 
-	@GetMapping("/user")
+	@GetMapping("/")
 	public ResponseEntity<?> getUser(@RequestParam Long id) {
 		try {
 			User user = this.userServiceImpl.findOne(id);
@@ -64,22 +66,26 @@ public class UserController {
 		}
 	}
 
-	@PutMapping(path = "/user", produces = { "application/json" }, consumes = { "application/json" })
+	@PutMapping(path = "/", produces = { "application/json" }, consumes = { "application/json" })
 	public ResponseEntity<?> updateUser(@RequestBody UserDto userDto, @RequestParam Long id) {
+		User updatedUser;
 		try {
-			User updatedUser = this.userServiceImpl.update(userDto, id);
-			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-		} catch (DataNotFoundException | EntityValidationException e) {
+			updatedUser = this.userServiceImpl.update(userDto, id);
+		} catch (EntityValidationException e) {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.BAD_REQUEST);
+		} catch (DataNotFoundException e) {
+			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
 		}
+		return new ResponseEntity<>(updatedUser, HttpStatus.OK);
 
 	}
 
-	@DeleteMapping("/user")
+	@DeleteMapping("/")
 	public ResponseEntity<?> deleteUser(@RequestParam Long id) {
 		try {
 			this.userServiceImpl.delete(id);
-			return new ResponseEntity<>("Deleted user with id: " + id, HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(this.parser.parseToMap("user", "Deleted user with id: " + id),
+					HttpStatus.NO_CONTENT);
 		} catch (DataNotFoundException e) {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
 		}
