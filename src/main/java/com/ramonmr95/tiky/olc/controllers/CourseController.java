@@ -43,7 +43,7 @@ public class CourseController {
 				HttpStatus.NOT_FOUND);
 	}
 
-	@GetMapping("/")
+	@GetMapping
 	public ResponseEntity<?> getCourse(@RequestParam Long id) {
 		Course course;
 		try {
@@ -76,7 +76,7 @@ public class CourseController {
 		}
 	}
 
-	@PutMapping("/")
+	@PutMapping
 	public ResponseEntity<?> updateCourse(@RequestBody Course course, @RequestParam Long id) {
 		try {
 			Course updatedCourse = this.courseService.update(course, id);
@@ -88,7 +88,7 @@ public class CourseController {
 		}
 	}
 
-	@DeleteMapping("/")
+	@DeleteMapping
 	public ResponseEntity<?> deleteCourse(@RequestParam Long id) {
 		try {
 			this.courseService.delete(id);

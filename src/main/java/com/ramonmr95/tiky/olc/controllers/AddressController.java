@@ -42,7 +42,7 @@ public class AddressController {
 				HttpStatus.NOT_FOUND);
 	}
 
-	@GetMapping("/")
+	@GetMapping
 	public ResponseEntity<?> getAddress(@RequestParam Long id) {
 		try {
 			Address address = this.addressService.findOne(id);
@@ -63,7 +63,7 @@ public class AddressController {
 		}
 	}
 
-	@PutMapping("/")
+	@PutMapping
 	public ResponseEntity<?> updateAddress(@RequestBody Address address, @RequestParam Long id) {
 		Address updatedAddress;
 		try {
@@ -77,7 +77,7 @@ public class AddressController {
 
 	}
 
-	@DeleteMapping("/")
+	@DeleteMapping
 	public ResponseEntity<?> deleteAddress(@RequestParam Long id) {
 		try {
 			this.addressService.delete(id);
@@ -88,7 +88,7 @@ public class AddressController {
 		}
 	}
 
-	@GetMapping("address")
+	@GetMapping("/address")
 	public ResponseEntity<?> findUserByAddress(@RequestParam Long user_id) {
 		Address address = this.addressService.findAddressByUserId(user_id);
 		if (address != null) {
