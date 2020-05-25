@@ -1,4 +1,4 @@
-package com.ramonmr95.tiky.olc.services;
+package com.ramonmr95.tiky.olc.services.interfaces;
 
 import java.util.List;
 
@@ -13,6 +13,8 @@ public interface IExamService {
 	public Exam findOne(Long id) throws DataNotFoundException;
 
 	public Exam save(Exam exam) throws EntityValidationException;
+	
+	public Exam update(Exam exam, Long id) throws EntityValidationException, DataNotFoundException;
 
 	public void delete(Long id) throws DataNotFoundException;
 

@@ -1,4 +1,4 @@
-package com.ramonmr95.tiky.olc.services;
+package com.ramonmr95.tiky.olc.services.interfaces;
 
 import java.util.List;
 
@@ -13,6 +13,10 @@ public interface ICourseService {
 	public Course findOne(Long id) throws DataNotFoundException;
 
 	public Course save(Course course) throws EntityValidationException;
+	
+	public Course update(Course course, Long id) throws DataNotFoundException, EntityValidationException;
 
 	public void delete(Long id) throws DataNotFoundException;
+	
+	public List<Course> findCoursesByUserId(Long id) throws DataNotFoundException;
 }

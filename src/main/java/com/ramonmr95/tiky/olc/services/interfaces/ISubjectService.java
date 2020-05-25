@@ -1,4 +1,4 @@
-package com.ramonmr95.tiky.olc.services;
+package com.ramonmr95.tiky.olc.services.interfaces;
 
 import java.util.List;
 

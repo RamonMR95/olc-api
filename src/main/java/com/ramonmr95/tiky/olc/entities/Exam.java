@@ -3,10 +3,8 @@ package com.ramonmr95.tiky.olc.entities;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,6 +17,7 @@ import javax.validation.constraints.NotNull;
 import org.modelmapper.ModelMapper;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ramonmr95.tiky.olc.dtos.ExamDto;
 
 @Entity
@@ -32,10 +31,12 @@ public class Exam implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
+	@ManyToOne
 	private Subject subject;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
+	@ManyToOne
 	private Course course;
 
 	@Temporal(TemporalType.DATE)
@@ -44,9 +45,11 @@ public class Exam implements Serializable {
 	@JsonFormat(pattern = dateFormat)
 	private Date date;
 
-	@NotNull(message = "The mark is required")
-	@Column(nullable = false)
 	private Double mark;
+
+	@JsonIgnore
+	@ManyToOne(optional = true)
+	private User user;
 
 	public Long getId() {
 		return id;
@@ -86,6 +89,14 @@ public class Exam implements Serializable {
 
 	public void setMark(Double mark) {
 		this.mark = mark;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public ExamDto convertToDto() {

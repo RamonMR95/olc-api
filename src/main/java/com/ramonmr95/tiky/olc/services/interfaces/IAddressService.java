@@ -1,4 +1,4 @@
-package com.ramonmr95.tiky.olc.services;
+package com.ramonmr95.tiky.olc.services.interfaces;
 
 import java.util.List;
 
@@ -17,5 +17,7 @@ public interface IAddressService {
 	public void delete(Long id) throws DataNotFoundException;
 	
 	public Address findAddressByUserId(Long id);
+
+	Address update(Address address, Long id) throws DataNotFoundException, EntityValidationException;
 
 }

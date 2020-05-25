@@ -1,9 +1,10 @@
-package com.ramonmr95.tiky.olc.services;
+package com.ramonmr95.tiky.olc.services.interfaces;
 
 import java.util.List;
 import java.util.Map;
 
 import com.ramonmr95.tiky.olc.dtos.UserDto;
+import com.ramonmr95.tiky.olc.entities.Role;
 import com.ramonmr95.tiky.olc.entities.User;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
 import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
@@ -27,5 +28,7 @@ public interface IUserService {
 	public User findByNickName(String nickName);
 
 	public User findByEmail(String email);
+
+	public Role findRoleByUserId(Long id) throws DataNotFoundException;
 
 }
