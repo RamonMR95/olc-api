@@ -79,6 +79,8 @@ public class User implements Serializable {
 	@JsonFormat(pattern = dateFormat)
 	private Date birthDate;
 
+	private String about;
+
 	public Long getId() {
 		return id;
 	}
@@ -173,6 +175,14 @@ public class User implements Serializable {
 
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
+	}
+
+	public String getAbout() {
+		return about;
+	}
+
+	public void setAbout(String about) {
+		this.about = about;
 	}
 
 	public UserDto convertToDto() {
