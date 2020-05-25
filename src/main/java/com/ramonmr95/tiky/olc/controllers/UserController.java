@@ -1,6 +1,7 @@
 package com.ramonmr95.tiky.olc.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,7 +45,7 @@ public class UserController {
 				HttpStatus.NOT_FOUND);
 	}
 
-	@GetMapping("/")
+	@GetMapping
 	public ResponseEntity<?> getUser(@RequestParam Long id) {
 		try {
 			User user = this.userServiceImpl.findOne(id);
@@ -67,21 +68,20 @@ public class UserController {
 		}
 	}
 
-	@PutMapping(path = "/", produces = { "application/json" }, consumes = { "application/json" })
+	@PutMapping
 	public ResponseEntity<?> updateUser(@RequestBody UserDto userDto, @RequestParam Long id) {
-		User updatedUser;
 		try {
-			updatedUser = this.userServiceImpl.update(userDto, id);
+			User updatedUser = this.userServiceImpl.update(userDto, id);
+			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
 		} catch (EntityValidationException e) {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.BAD_REQUEST);
 		} catch (DataNotFoundException e) {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(updatedUser, HttpStatus.OK);
 
 	}
 
-	@DeleteMapping("/")
+	@DeleteMapping
 	public ResponseEntity<?> deleteUser(@RequestParam Long id) {
 		try {
 			this.userServiceImpl.delete(id);
@@ -92,14 +92,26 @@ public class UserController {
 		}
 	}
 
-	@GetMapping("role")
+	@GetMapping("/role")
 	public ResponseEntity<?> getRoleByUserId(@RequestParam Long user_id) {
 		try {
 			Role role = this.userServiceImpl.findRoleByUserId(user_id);
 			return new ResponseEntity<>(role, HttpStatus.OK);
 		} catch (DataNotFoundException e) {
 			return new ResponseEntity<>(this.parser.parseToMap("errors", "Cannot find any user with id: " + user_id),
-					HttpStatus.BAD_REQUEST);
+					HttpStatus.NOT_FOUND);
+		}
+
+	}
+
+	@GetMapping("/marks")
+	public ResponseEntity<?> getMarksByUserIdAndCourseYearStart(@RequestParam Long id, @RequestParam String year_start) {
+		try {
+			Map<String, Double> marksMap = this.userServiceImpl.findMarksAndSubjectsByStudentIdAndYearStart(id, year_start);
+			return new ResponseEntity<>(marksMap, HttpStatus.OK);
+		} catch (DataNotFoundException e) {
+			return new ResponseEntity<>(this.parser.parseToMap("errors", "Cannot find any user with id: " + id),
+					HttpStatus.NOT_FOUND);
 		}
 
 	}

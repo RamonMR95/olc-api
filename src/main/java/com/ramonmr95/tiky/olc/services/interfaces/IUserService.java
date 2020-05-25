@@ -21,7 +21,7 @@ public interface IUserService {
 
 	public void delete(Long id) throws DataNotFoundException;
 
-	public Map<Double, String> findMarksAndSubjectsByStudentIdAndYearStart(Long id, String year);
+	public Map<String, Double> findMarksAndSubjectsByStudentIdAndYearStart(Long id, String year) throws DataNotFoundException;
 
 	public List<User> findAllUsersPerCourse(Long course_id);
 
