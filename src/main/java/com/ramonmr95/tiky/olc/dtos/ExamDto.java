@@ -18,6 +18,8 @@ public class ExamDto {
 
 	private Double mark;
 
+	private UserDto user;
+
 	public Long getId() {
 		return id;
 	}
@@ -56,6 +58,14 @@ public class ExamDto {
 
 	public void setMark(Double mark) {
 		this.mark = mark;
+	}
+
+	public UserDto getUser() {
+		return user;
+	}
+
+	public void setUser(UserDto user) {
+		this.user = user;
 	}
 
 	public Exam convertToEntity() {

@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -57,6 +58,11 @@ public class Course implements Serializable {
 	@JsonIgnore()
 	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Exam> exams;
+
+	@OneToOne
+	private User mentor;
+
+	private String photo;
 
 	public Long getId() {
 		return id;
@@ -104,6 +110,22 @@ public class Course implements Serializable {
 
 	public void setExams(List<Exam> exams) {
 		this.exams = exams;
+	}
+
+	public User getMentor() {
+		return mentor;
+	}
+
+	public void setMentor(User mentor) {
+		this.mentor = mentor;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 	public CourseDto convertToDto() {
