@@ -14,6 +14,8 @@ import com.ramonmr95.tiky.olc.entities.User;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
 import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
 import com.ramonmr95.tiky.olc.repositories.IUserDao;
+import com.ramonmr95.tiky.olc.services.interfaces.IRoleService;
+import com.ramonmr95.tiky.olc.services.interfaces.IUserService;
 import com.ramonmr95.tiky.olc.validators.EntityValidator;
 
 @Service
