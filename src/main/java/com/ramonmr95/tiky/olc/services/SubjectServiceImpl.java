@@ -10,6 +10,7 @@ import com.ramonmr95.tiky.olc.entities.Subject;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
 import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
 import com.ramonmr95.tiky.olc.repositories.ISubjectDao;
+import com.ramonmr95.tiky.olc.services.interfaces.ISubjectService;
 import com.ramonmr95.tiky.olc.validators.EntityValidator;
 
 @Service
