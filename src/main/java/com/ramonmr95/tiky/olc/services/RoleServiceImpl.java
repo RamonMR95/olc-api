@@ -10,6 +10,7 @@ import com.ramonmr95.tiky.olc.entities.Role;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
 import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
 import com.ramonmr95.tiky.olc.repositories.IRoleDao;
+import com.ramonmr95.tiky.olc.services.interfaces.IRoleService;
 import com.ramonmr95.tiky.olc.validators.EntityValidator;
 
 @Service
