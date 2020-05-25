@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ramonmr95.tiky.olc.dtos.UserDto;
+import com.ramonmr95.tiky.olc.entities.Role;
 import com.ramonmr95.tiky.olc.entities.User;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
 import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
@@ -89,6 +90,18 @@ public class UserController {
 		} catch (DataNotFoundException e) {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
 		}
+	}
+
+	@GetMapping("role")
+	public ResponseEntity<?> getRoleByUserId(@RequestParam Long user_id) {
+		try {
+			Role role = this.userServiceImpl.findRoleByUserId(user_id);
+			return new ResponseEntity<>(role, HttpStatus.OK);
+		} catch (DataNotFoundException e) {
+			return new ResponseEntity<>(this.parser.parseToMap("errors", "Cannot find any user with id: " + user_id),
+					HttpStatus.BAD_REQUEST);
+		}
+
 	}
 
 }

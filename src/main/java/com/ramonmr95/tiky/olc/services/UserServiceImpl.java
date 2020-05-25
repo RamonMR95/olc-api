@@ -107,4 +107,11 @@ public class UserServiceImpl implements IUserService {
 		return this.userDao.findByEmail(email);
 	}
 
+	@Transactional(readOnly = true)
+	@Override
+	public Role findRoleByUserId(Long id) throws DataNotFoundException {
+		this.findOne(id);
+		return this.userDao.findRoleByUserId(id);
+	}
+
 }

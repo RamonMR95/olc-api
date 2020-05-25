@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import com.ramonmr95.tiky.olc.entities.Role;
 import com.ramonmr95.tiky.olc.entities.User;
 
 @Repository
@@ -22,5 +23,8 @@ public interface IUserDao extends CrudRepository<User, Long> {
 	public User findByNickName(String nickName);
 	
 	public User findByEmail(String email);
+	
+	@Query(value = "SELECT r FROM Role r INNER JOIN User u ON r.id = u.role WHERE u.id = ?1")
+	public Role findRoleByUserId(Long id); 
 
 }
