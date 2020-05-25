@@ -42,7 +42,7 @@ public class ExamController {
 				HttpStatus.NOT_FOUND);
 	}
 
-	@GetMapping("/")
+	@GetMapping
 	public ResponseEntity<?> getExam(@RequestParam Long id) {
 		try {
 			Exam exam = this.examService.findOne(id);
@@ -63,7 +63,7 @@ public class ExamController {
 		}
 	}
 
-	@PutMapping("/")
+	@PutMapping
 	public ResponseEntity<?> updateExam(@RequestBody Exam exam, @RequestParam Long id) {
 		Exam updatedExam;
 		try {
@@ -77,7 +77,7 @@ public class ExamController {
 
 	}
 
-	@DeleteMapping("/")
+	@DeleteMapping
 	public ResponseEntity<?> deleteExam(@RequestParam Long id) {
 		try {
 			this.examService.delete(id);

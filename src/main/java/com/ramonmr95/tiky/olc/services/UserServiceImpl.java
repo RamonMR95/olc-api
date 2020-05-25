@@ -82,10 +82,11 @@ public class UserServiceImpl implements IUserService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public Map<Double, String> findMarksAndSubjectsByStudentIdAndYearStart(Long id, String year) {
-		Map<Double, String> marksMap = new HashMap<>();
+	public Map<String, Double> findMarksAndSubjectsByStudentIdAndYearStart(Long id, String year) throws DataNotFoundException {
+		this.findOne(id);
+		Map<String, Double> marksMap = new HashMap<>();
 		List<Object[]> marksList = this.userDao.findMarkAndSubjectsByStudentIdAndYearStart(id, year);
-		marksList.forEach(mark -> marksMap.put((Double) mark[0], (String) mark[1]));
+		marksList.forEach(mark -> marksMap.put((String) mark[1], (Double) mark[0]));
 		return marksMap;
 	}
 
