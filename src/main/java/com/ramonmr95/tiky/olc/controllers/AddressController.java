@@ -43,7 +43,7 @@ public class AddressController {
 	}
 
 	@GetMapping("/")
-	public ResponseEntity<?> getExam(@RequestParam Long id) {
+	public ResponseEntity<?> getAddress(@RequestParam Long id) {
 		try {
 			Address address = this.addressService.findOne(id);
 			return new ResponseEntity<>(address, HttpStatus.OK);
@@ -54,7 +54,7 @@ public class AddressController {
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<?> createExam(@RequestBody Address address) {
+	public ResponseEntity<?> createAddress(@RequestBody Address address) {
 		try {
 			Address newAddress = this.addressService.save(address);
 			return new ResponseEntity<>(newAddress, HttpStatus.CREATED);
