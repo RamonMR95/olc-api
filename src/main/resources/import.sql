@@ -5,15 +5,16 @@ INSERT INTO roles (name) VALUES ("Admin");
 INSERT INTO roles (name) VALUES ("Teacher");
 INSERT INTO roles (name) VALUES ("Student");
 INSERT INTO roles (name) VALUES ("Anonymous");
- 
- 
-INSERT INTO courses (course_name, schedule, year_start, year_end) VALUES("DAM", "morning", "1992/05/07", "1993/06/07");
-INSERT INTO courses (course_name, schedule, year_start, year_end) VALUES("DAM", "afternoon", "1993/05/07", "1994/06/07");
-INSERT INTO courses (course_name, schedule, year_start, year_end) VALUES("DAW", "morning", "1992/05/07", "1993/06/07");
-INSERT INTO courses (course_name, schedule, year_start, year_end) VALUES("DAW", "afternoon", "1993/05/07", "1994/06/07");
 
 INSERT INTO users (about, active, birth_date, email, name, nick_name, password, photo, sur_name, address_id, course_id, role_id) VALUES ("", TRUE, "1995/03/15", "antonio507murcia@gmail.com", "Antonio", "tiky", ":)", "", "Ruiz", 1, 1, 1);
 INSERT INTO users (about, active, birth_date, email, name, nick_name, password, photo, sur_name, address_id, course_id, role_id) VALUES ("", TRUE, "1970/05/07", "ramonmr16@gmail.com", "Ramon", "ramonmr95", ":)", "", "Moñino", 2, 2, 1);
+ 
+ 
+INSERT INTO courses (course_name, photo, schedule, year_start, year_end, mentor_id) VALUES("DAM", null, "morning", "1992/05/07", "1993/06/07", 1);
+INSERT INTO courses (course_name, photo, schedule, year_start, year_end, mentor_id) VALUES("DAM", null, "afternoon", "1993/05/07", "1994/06/07", null);
+INSERT INTO courses (course_name, photo, schedule, year_start, year_end, mentor_id) VALUES("DAW", null, "morning", "1992/05/07", "1993/06/07", null);
+INSERT INTO courses (course_name, photo, schedule, year_start, year_end, mentor_id) VALUES("DAW", null, "afternoon", "1993/05/07", "1994/06/07", null);
+
  
 INSERT INTO subjects (subject_name) VALUES ("PSP");
 INSERT INTO subjects (subject_name) VALUES ("SGE");
