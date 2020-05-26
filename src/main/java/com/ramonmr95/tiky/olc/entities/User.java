@@ -5,8 +5,10 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,7 +45,7 @@ public class User implements Serializable {
 	private Role role;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "course_id", nullable = true)
+	@JoinColumn(name = "course_id", nullable = true, insertable = true, foreignKey = @ForeignKey(foreignKeyDefinition = "fk_course_user", value = ConstraintMode.CONSTRAINT))
 	private Course course;
 
 	@NotNull(message = "The name is required")

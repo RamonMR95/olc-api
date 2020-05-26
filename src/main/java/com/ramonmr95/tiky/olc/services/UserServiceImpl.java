@@ -9,11 +9,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ramonmr95.tiky.olc.dtos.UserDto;
+import com.ramonmr95.tiky.olc.entities.Course;
 import com.ramonmr95.tiky.olc.entities.Role;
 import com.ramonmr95.tiky.olc.entities.User;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
 import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
 import com.ramonmr95.tiky.olc.repositories.IUserDao;
+import com.ramonmr95.tiky.olc.services.interfaces.ICourseService;
 import com.ramonmr95.tiky.olc.services.interfaces.IRoleService;
 import com.ramonmr95.tiky.olc.services.interfaces.IUserService;
 import com.ramonmr95.tiky.olc.validators.EntityValidator;
@@ -24,6 +26,9 @@ public class UserServiceImpl implements IUserService {
 	@Autowired
 	private IRoleService roleServiceImpl;
 
+	@Autowired
+	private ICourseService courseService;
+
 	private EntityValidator<User> entityValidator = new EntityValidator<>();
 
 	@Autowired
@@ -32,8 +37,11 @@ public class UserServiceImpl implements IUserService {
 	@Transactional(readOnly = true)
 	@Override
 	public User findOne(Long id) throws DataNotFoundException {
-		return this.userDao.findById(id)
-				.orElseThrow(() -> new DataNotFoundException("User with id: " + id + " could not be found."));
+		if (id != null) {
+			return this.userDao.findById(id)
+					.orElseThrow(() -> new DataNotFoundException("User with id: " + id + " could not be found."));
+		}
+		throw new DataNotFoundException("Error user id is required");
 	}
 
 	@Transactional(readOnly = true)
@@ -82,7 +90,8 @@ public class UserServiceImpl implements IUserService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public Map<String, Double> findMarksAndSubjectsByStudentIdAndYearStart(Long id, String year) throws DataNotFoundException {
+	public Map<String, Double> findMarksAndSubjectsByStudentIdAndYearStart(Long id, String year)
+			throws DataNotFoundException {
 		this.findOne(id);
 		Map<String, Double> marksMap = new HashMap<>();
 		List<Object[]> marksList = this.userDao.findMarkAndSubjectsByStudentIdAndYearStart(id, year);
@@ -113,6 +122,17 @@ public class UserServiceImpl implements IUserService {
 	public Role findRoleByUserId(Long id) throws DataNotFoundException {
 		this.findOne(id);
 		return this.userDao.findRoleByUserId(id);
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public User findMentorByCourseId(Long courseId) throws DataNotFoundException {
+		Course course = this.courseService.findOne(courseId);
+		User mentor = course.getMentor();
+		if (mentor != null) {
+			return this.findOne(mentor.getId());
+		}
+		return null;
 	}
 
 }

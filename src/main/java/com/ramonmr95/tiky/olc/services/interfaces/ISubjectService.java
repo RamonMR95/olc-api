@@ -16,6 +16,6 @@ public interface ISubjectService {
 
 	public void delete(Long id) throws DataNotFoundException;
 
-	public List<Subject> findSubjectByCourseId(Long id);
+	public List<Subject> findSubjectByCourseId(Long id) throws DataNotFoundException;
 
 }

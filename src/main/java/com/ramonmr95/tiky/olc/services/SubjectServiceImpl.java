@@ -57,7 +57,8 @@ public class SubjectServiceImpl implements ISubjectService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public List<Subject> findSubjectByCourseId(Long id) {
+	public List<Subject> findSubjectByCourseId(Long id) throws DataNotFoundException {
+		this.findOne(id);
 		return this.subjectDao.findSubjectByCourseId(id);
 	}
 

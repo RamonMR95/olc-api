@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ramonmr95.tiky.olc.dtos.CourseDto;
 import com.ramonmr95.tiky.olc.entities.Course;
+import com.ramonmr95.tiky.olc.entities.Subject;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
 import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
 import com.ramonmr95.tiky.olc.parsers.JsonParser;
 import com.ramonmr95.tiky.olc.services.interfaces.ICourseService;
+import com.ramonmr95.tiky.olc.services.interfaces.ISubjectService;
 
 @CrossOrigin("*")
 @RestController
@@ -29,6 +31,9 @@ public class CourseController {
 
 	@Autowired
 	private ICourseService courseService;
+
+	@Autowired
+	private ISubjectService subjectService;
 
 	private JsonParser parser = new JsonParser();
 
@@ -97,6 +102,25 @@ public class CourseController {
 		} catch (DataNotFoundException e) {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
 		}
+	}
+
+	@GetMapping("/subjects")
+	public ResponseEntity<?> getSubjectsByCourseId(@RequestParam(value = "course_id") Long id) {
+		List<Subject> subjects;
+		try {
+			subjects = this.subjectService.findSubjectByCourseId(id);
+			if (subjects != null) {
+				return new ResponseEntity<>(subjects, HttpStatus.OK);
+			}
+			return new ResponseEntity<>(
+					this.parser.parseToMap("errors", "The course with id: " + id + " does not have any subject."),
+					HttpStatus.NOT_FOUND);
+		} catch (DataNotFoundException e) {
+			return new ResponseEntity<>(
+					this.parser.parseToMap("errors", "The course with id: " + id + " does not exist."),
+					HttpStatus.NOT_FOUND);
+		}
+
 	}
 
 }

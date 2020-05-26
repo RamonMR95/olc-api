@@ -3,11 +3,13 @@ package com.ramonmr95.tiky.olc.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -48,7 +50,8 @@ public class Exam implements Serializable {
 	private Double mark;
 
 	@JsonIgnore
-	@ManyToOne(optional = true)
+	@ManyToOne(cascade = CascadeType.ALL, optional = true)
+	@JoinColumn(name = "user_id", referencedColumnName = "id", nullable = true, insertable = true)
 	private User user;
 
 	public Long getId() {
