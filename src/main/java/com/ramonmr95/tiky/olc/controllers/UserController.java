@@ -105,15 +105,30 @@ public class UserController {
 	}
 
 	@GetMapping("/marks")
-	public ResponseEntity<?> getMarksByUserIdAndCourseYearStart(@RequestParam Long id, @RequestParam String year_start) {
+	public ResponseEntity<?> getMarksByUserIdAndCourseYearStart(@RequestParam Long id,
+			@RequestParam String year_start) {
 		try {
-			Map<String, Double> marksMap = this.userServiceImpl.findMarksAndSubjectsByStudentIdAndYearStart(id, year_start);
+			Map<String, Double> marksMap = this.userServiceImpl.findMarksAndSubjectsByStudentIdAndYearStart(id,
+					year_start);
 			return new ResponseEntity<>(marksMap, HttpStatus.OK);
 		} catch (DataNotFoundException e) {
 			return new ResponseEntity<>(this.parser.parseToMap("errors", "Cannot find any user with id: " + id),
 					HttpStatus.NOT_FOUND);
 		}
 
+	}
+
+	@GetMapping("/mentor")
+	public ResponseEntity<?> getMentorByCourseId(@RequestParam(name = "course_id") Long courseId) {
+		User user;
+		try {
+			user = this.userServiceImpl.findMentorByCourseId(courseId);
+			return new ResponseEntity<>(user, HttpStatus.OK);
+		} catch (DataNotFoundException e) {
+			return new ResponseEntity<>(
+					this.parser.parseToMap("errors", "Cannot find any mentor with course id: " + courseId),
+					HttpStatus.NOT_FOUND);
+		}
 	}
 
 }
