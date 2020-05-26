@@ -2,6 +2,7 @@ package com.ramonmr95.tiky.olc.repositories;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -19,12 +20,19 @@ public interface IUserDao extends CrudRepository<User, Long> {
 
 	@Query(value = "SELECT u FROM User u WHERE course_id = ?1")
 	public List<User> findAllUsersPerCourse(Long course_id);
-	
+
 	public User findByNickName(String nickName);
-	
+
 	public User findByEmail(String email);
-	
+
 	@Query(value = "SELECT r FROM Role r INNER JOIN User u ON r.id = u.role WHERE u.id = ?1")
-	public Role findRoleByUserId(Long id); 
+	public Role findRoleByUserId(Long id);
+
+	@Query(nativeQuery = true, value = "SELECT u.name FROM courses c INNER JOIN users u ON u.id = c.mentor_id WHERE c.id = ?1")
+	public User findMentorByCourseId(Long courseId);
+
+	@Modifying
+	@Query("UPDATE User u SET u.active = ?2 WHERE u.id = ?1")
+	public void updateStateUser(int user_id, boolean active);
 
 }
