@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ramonmr95.tiky.olc.dtos.UserDto;
 import com.ramonmr95.tiky.olc.entities.Role;
 import com.ramonmr95.tiky.olc.entities.User;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
@@ -57,10 +56,10 @@ public class UserController {
 	}
 
 	@PostMapping(path = "/create", produces = { "application/json" }, consumes = { "application/json" })
-	public ResponseEntity<?> createUser(@RequestBody UserDto userDto) {
+	public ResponseEntity<?> createUser(@RequestBody User user) {
 		try {
-			User user = this.userServiceImpl.save(userDto);
-			return new ResponseEntity<>(user, HttpStatus.CREATED);
+			User newUser = this.userServiceImpl.save(user);
+			return new ResponseEntity<>(newUser, HttpStatus.CREATED);
 		} catch (EntityValidationException e) {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.BAD_REQUEST);
 		} catch (DataNotFoundException e) {
@@ -69,9 +68,9 @@ public class UserController {
 	}
 
 	@PutMapping
-	public ResponseEntity<?> updateUser(@RequestBody UserDto userDto, @RequestParam Long id) {
+	public ResponseEntity<?> updateUser(@RequestBody User user, @RequestParam Long id) {
 		try {
-			User updatedUser = this.userServiceImpl.update(userDto, id);
+			User updatedUser = this.userServiceImpl.update(user, id);
 			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
 		} catch (EntityValidationException e) {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.BAD_REQUEST);
@@ -119,15 +118,13 @@ public class UserController {
 	}
 
 	@GetMapping("/mentor")
-	public ResponseEntity<?> getMentorByCourseId(@RequestParam(name = "course_id") Long courseId) {
+	public ResponseEntity<?> getMentorByCourseId(@RequestParam(name = "mentor_id") Long courseId) {
 		User user;
 		try {
 			user = this.userServiceImpl.findMentorByCourseId(courseId);
 			return new ResponseEntity<>(user, HttpStatus.OK);
 		} catch (DataNotFoundException e) {
-			return new ResponseEntity<>(
-					this.parser.parseToMap("errors", "Cannot find any mentor with course id: " + courseId),
-					HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(this.parser.parseToMap("errors", e.getMessage()), HttpStatus.NOT_FOUND);
 		}
 	}
 
