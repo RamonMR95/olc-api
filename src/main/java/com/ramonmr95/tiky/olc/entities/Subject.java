@@ -1,16 +1,12 @@
 package com.ramonmr95.tiky.olc.entities;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -32,9 +28,6 @@ public class Subject implements Serializable {
 	@NotNull(message = "Name of subject can't be empty")
 	private String subjectName;
 
-	@OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Exam> exams;
-
 	public Long getId() {
 		return id;
 	}
@@ -51,16 +44,8 @@ public class Subject implements Serializable {
 		this.subjectName = subjectName;
 	}
 
-	public List<Exam> getExams() {
-		return exams;
-	}
-
-	public void setExams(List<Exam> exams) {
-		this.exams = exams;
-	}
-
 	public SubjectDto convertToDto() {
 		return new ModelMapper().map(this, SubjectDto.class);
 	}
-	
+
 }

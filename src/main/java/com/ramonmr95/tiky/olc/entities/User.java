@@ -5,14 +5,13 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -23,6 +22,7 @@ import javax.validation.constraints.NotNull;
 import org.modelmapper.ModelMapper;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ramonmr95.tiky.olc.dtos.UserDto;
 
 @Entity
@@ -40,12 +40,12 @@ public class User implements Serializable {
 	@JoinColumn(name = "address_id", nullable = true)
 	private Address address;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "role_id", nullable = false)
 	private Role role;
 
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "course_id", nullable = true, insertable = true, foreignKey = @ForeignKey(foreignKeyDefinition = "fk_course_user", value = ConstraintMode.CONSTRAINT))
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "course_id", nullable = true)
 	private Course course;
 
 	@NotNull(message = "The name is required")
@@ -82,6 +82,11 @@ public class User implements Serializable {
 	private Date birthDate;
 
 	private String about;
+
+	@JsonIgnore
+	@OneToOne(optional = true, cascade = CascadeType.ALL)
+	@JoinColumn(nullable = true)
+	private Course mentor;
 
 	public Long getId() {
 		return id;
@@ -185,6 +190,14 @@ public class User implements Serializable {
 
 	public void setAbout(String about) {
 		this.about = about;
+	}
+
+	public Course getMentor() {
+		return mentor;
+	}
+
+	public void setMentor(Course mentor) {
+		this.mentor = mentor;
 	}
 
 	public UserDto convertToDto() {
