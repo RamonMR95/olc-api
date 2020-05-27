@@ -4,18 +4,13 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -59,13 +54,8 @@ public class Course implements Serializable {
 	private String schedule;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
 	private List<Exam> exams;
-
-	@JsonIgnore
-	@OneToOne
-	@JoinColumn(name = "mentor_id", referencedColumnName = "id", nullable = true, insertable = true, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, foreignKeyDefinition = "fk_course_mentor", name = "fk_mentor_to_course"))
-	private User mentor;
 
 	private String photo;
 
@@ -115,14 +105,6 @@ public class Course implements Serializable {
 
 	public void setExams(List<Exam> exams) {
 		this.exams = exams;
-	}
-
-	public User getMentor() {
-		return mentor;
-	}
-
-	public void setMentor(User mentor) {
-		this.mentor = mentor;
 	}
 
 	public String getPhoto() {

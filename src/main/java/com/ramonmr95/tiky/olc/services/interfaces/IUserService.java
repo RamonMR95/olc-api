@@ -3,7 +3,6 @@ package com.ramonmr95.tiky.olc.services.interfaces;
 import java.util.List;
 import java.util.Map;
 
-import com.ramonmr95.tiky.olc.dtos.UserDto;
 import com.ramonmr95.tiky.olc.entities.Role;
 import com.ramonmr95.tiky.olc.entities.User;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
@@ -15,9 +14,9 @@ public interface IUserService {
 
 	public List<User> findAll();
 
-	public User save(UserDto userDto) throws EntityValidationException, DataNotFoundException;
+	public User save(User user) throws EntityValidationException, DataNotFoundException;
 
-	public User update(UserDto userDto, Long id) throws EntityValidationException, DataNotFoundException;
+	public User update(User user, Long id) throws EntityValidationException, DataNotFoundException;
 
 	public void delete(Long id) throws DataNotFoundException;
 

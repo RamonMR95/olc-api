@@ -19,7 +19,7 @@ public class TopicContent implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne()
+	@ManyToOne
 	private Topic topic;
 
 	private String subtitle;
