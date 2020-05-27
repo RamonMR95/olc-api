@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ramonmr95.tiky.olc.dtos.UserDto;
-import com.ramonmr95.tiky.olc.entities.Course;
 import com.ramonmr95.tiky.olc.entities.Role;
 import com.ramonmr95.tiky.olc.entities.User;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
@@ -25,7 +23,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private IRoleService roleServiceImpl;
-
+	
 	@Autowired
 	private ICourseService courseService;
 
@@ -52,15 +50,18 @@ public class UserServiceImpl implements IUserService {
 
 	@Transactional
 	@Override
-	public User update(UserDto userDto, Long id) throws DataNotFoundException, EntityValidationException {
-		User user = this.findOne(id);
-		Role role = this.roleServiceImpl.findOne(userDto.getRole().getId());
-		user.setRole(role);
-		user.setName(userDto.getName());
-		user.setSurName(userDto.getSurName());
-		user.setNickName(userDto.getNickName());
-		user.setEmail(userDto.getEmail());
-		user.setActive(userDto.isActive());
+	public User update(User user, Long id) throws DataNotFoundException, EntityValidationException {
+		User newUser = this.findOne(id);
+		Role role = this.roleServiceImpl.findOne(user.getRole().getId());
+		newUser.setRole(role);
+		newUser.setName(user.getName());
+		newUser.setSurName(user.getSurName());
+		newUser.setNickName(user.getNickName());
+		newUser.setEmail(user.getEmail());
+		newUser.setActive(user.isActive());
+		newUser.setPassword(user.getPassword());
+		newUser.setAbout(user.getAbout());
+		newUser.setPhoto(user.getPhoto());
 
 		if (this.entityValidator.isEntityValid(user)) {
 			return this.userDao.save(user);
@@ -70,9 +71,8 @@ public class UserServiceImpl implements IUserService {
 
 	@Transactional
 	@Override
-	public User save(UserDto userDto) throws EntityValidationException, DataNotFoundException {
-		User user = userDto.convertToEntity();
-		Role role = this.roleServiceImpl.findOne(userDto.getRole().getId());
+	public User save(User user) throws EntityValidationException, DataNotFoundException {
+		Role role = this.roleServiceImpl.findOne(user.getRole().getId());
 		user.setRole(role);
 
 		if (this.entityValidator.isEntityValid(user)) {
@@ -127,12 +127,12 @@ public class UserServiceImpl implements IUserService {
 	@Transactional(readOnly = true)
 	@Override
 	public User findMentorByCourseId(Long courseId) throws DataNotFoundException {
-		Course course = this.courseService.findOne(courseId);
-		User mentor = course.getMentor();
-		if (mentor != null) {
-			return this.findOne(mentor.getId());
+		this.courseService.findOne(courseId);
+		User user = this.userDao.findMentorByCourseId(courseId);
+		if (user == null) {
+			throw new DataNotFoundException("Course with id '" + courseId + "' doesn't have any mentor"); 
 		}
-		return null;
+		return user;
 	}
 
 }

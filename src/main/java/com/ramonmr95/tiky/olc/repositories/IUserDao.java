@@ -28,11 +28,11 @@ public interface IUserDao extends CrudRepository<User, Long> {
 	@Query(value = "SELECT r FROM Role r INNER JOIN User u ON r.id = u.role WHERE u.id = ?1")
 	public Role findRoleByUserId(Long id);
 
-	@Query(nativeQuery = true, value = "SELECT u.name FROM courses c INNER JOIN users u ON u.id = c.mentor_id WHERE c.id = ?1")
-	public User findMentorByCourseId(Long courseId);
+	@Query(nativeQuery = true, value = "SELECT u.* FROM users u WHERE mentor_id = ?1")
+	public User findMentorByCourseId(Long course_id);
 
 	@Modifying
-	@Query("UPDATE User u SET u.active = ?2 WHERE u.id = ?1")
+	@Query(value = "UPDATE User u SET u.active = ?2 WHERE u.id = ?1")
 	public void updateStateUser(int user_id, boolean active);
 
 }
