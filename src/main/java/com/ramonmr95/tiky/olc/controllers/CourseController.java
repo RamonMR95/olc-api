@@ -71,11 +71,10 @@ public class CourseController {
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<?> createCourse(@RequestBody CourseDto courseDto) {
-		Course course = null;
+	public ResponseEntity<?> createCourse(@RequestBody Course course) {
 		try {
-			course = this.courseService.save(course);
-			return new ResponseEntity<>(course, HttpStatus.CREATED);
+			Course newCourse = this.courseService.save(course);
+			return new ResponseEntity<>(newCourse, HttpStatus.CREATED);
 		} catch (EntityValidationException e) {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.BAD_REQUEST);
 		}
