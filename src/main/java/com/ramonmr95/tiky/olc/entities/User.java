@@ -56,10 +56,6 @@ public class User implements Serializable {
 	@Column(name = "sur_name", nullable = false)
 	private String surName;
 
-	@NotNull(message = "The nickname is required")
-	@Column(name = "nick_name", nullable = false, unique = true)
-	private String nickName;
-
 	@NotNull(message = "The email is required")
 	@Email(message = "Invalid email format")
 	@Column(nullable = false, unique = true)
@@ -134,14 +130,6 @@ public class User implements Serializable {
 
 	public void setSurName(String surName) {
 		this.surName = surName;
-	}
-
-	public String getNickName() {
-		return nickName;
-	}
-
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
 	}
 
 	public String getEmail() {

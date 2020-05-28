@@ -5,7 +5,7 @@ import org.modelmapper.ModelMapper;
 import com.ramonmr95.tiky.olc.entities.User;
 
 public class UserDto {
-	
+
 	private Long id;
 
 	private AddressDto address;
@@ -18,13 +18,15 @@ public class UserDto {
 
 	private String surName;
 
-	private String nickName;
-
 	private String email;
 
 	private String password;
 
 	private boolean active;
+
+	private String about;
+
+	private String photo;
 
 	public Long getId() {
 		return id;
@@ -74,14 +76,6 @@ public class UserDto {
 		this.surName = surName;
 	}
 
-	public String getNickName() {
-		return nickName;
-	}
-
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -105,7 +99,23 @@ public class UserDto {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
+
+	public String getAbout() {
+		return about;
+	}
+
+	public void setAbout(String about) {
+		this.about = about;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
 	public User convertToEntity() {
 		return new ModelMapper().map(this, User.class);
 	}

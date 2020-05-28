@@ -17,8 +17,8 @@ INSERT INTO subjects (subject_name) VALUES ("DI");
 INSERT INTO subjects (subject_name) VALUES ("AAD");
 
 
-INSERT INTO users (about, active, birth_date, email, name, nick_name, password, photo, sur_name, address_id, course_id, mentor_id, role_id) VALUES ("", TRUE, "1995/03/15", "antonio507murcia@gmail.com", "Antonio", "tiky", ":)", "", "Ruiz", 1, 1, 1, 1);
-INSERT INTO users (about, active, birth_date, email, name, nick_name, password, photo, sur_name, address_id, course_id, mentor_id, role_id) VALUES ("", TRUE, "1970/05/07", "ramonmr16@gmail.com", "Ramon", "ramonmr95", ":)", "", "Moñino", 2, 2, 2, 1);
+INSERT INTO users (about, active, birth_date, email, name, password, photo, sur_name, address_id, course_id, mentor_id, role_id) VALUES ("", TRUE, "1995/03/15", "antonio507murcia@gmail.com", "Antonio", ":)", "", "Ruiz", 1, 1, 1, 1);
+INSERT INTO users (about, active, birth_date, email, name, password, photo, sur_name, address_id, course_id, mentor_id, role_id) VALUES ("", TRUE, "1970/05/07", "ramonmr16@gmail.com", "Ramon", ":)", "", "Moñino", 2, 2, 2, 1);
  
 
 INSERT INTO exams(DATE, mark, course_id, subject_id, user_id) VALUES ("1992/05/07", 1, 1, 1, 1);
@@ -30,7 +30,7 @@ INSERT INTO exams(DATE, mark, course_id, subject_id, user_id) VALUES ("1992/05/0
 INSERT INTO exams(DATE, mark, course_id, subject_id, user_id) VALUES ("1993/05/07", 2, 2, 1, 2);
 INSERT INTO exams(DATE, mark, course_id, subject_id, user_id) VALUES ("1992/05/07", 7, 2, 2, 2);
 INSERT INTO exams(DATE, mark, course_id, subject_id, user_id) VALUES ("1992/05/07", 8, 2, 3, 2);
-INSERT INTO exams(DATE, mark, course_id, subject_id, user_id) VALUES ("1992/05/02", 9, 2, 4,2 );
+INSERT INTO exams(DATE, mark, course_id, subject_id, user_id) VALUES ("1992/05/02", 9, 2, 4, 2);
  
 
  
