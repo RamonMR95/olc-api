@@ -54,15 +54,15 @@ public class CourseServiceImpl implements ICourseService {
 	@Override
 	public Course update(Course course, Long id) throws DataNotFoundException, EntityValidationException {
 		Course updatedCourse = this.findOne(id);
-		updatedCourse.setCourseName(course.getCourseName());
-		updatedCourse.setYearStart(course.getYearStart());
-		updatedCourse.setYearEnd(course.getYearEnd());
-		updatedCourse.setSchedule(course.getSchedule());
-
-		if (this.entityValidator.isEntityValid(updatedCourse)) {
+		
+		if (this.entityValidator.isEntityValid(course)) {
+			updatedCourse.setCourseName(course.getCourseName());
+			updatedCourse.setYearStart(course.getYearStart());
+			updatedCourse.setYearEnd(course.getYearEnd());
+			updatedCourse.setSchedule(course.getSchedule());
 			return this.courseDao.save(updatedCourse);
 		}
-		throw new EntityValidationException(this.entityValidator.getEntityValidationErrorsString(updatedCourse));
+		throw new EntityValidationException(this.entityValidator.getEntityValidationErrorsString(course));
 	}
 
 	@Transactional(readOnly = true)

@@ -10,6 +10,7 @@ import com.ramonmr95.tiky.olc.entities.Subject;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
 import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
 import com.ramonmr95.tiky.olc.repositories.ISubjectDao;
+import com.ramonmr95.tiky.olc.services.interfaces.ICourseService;
 import com.ramonmr95.tiky.olc.services.interfaces.ISubjectService;
 import com.ramonmr95.tiky.olc.validators.EntityValidator;
 
@@ -18,6 +19,9 @@ public class SubjectServiceImpl implements ISubjectService {
 
 	@Autowired
 	private ISubjectDao subjectDao;
+	
+	@Autowired
+	private ICourseService courseService;
 
 	private EntityValidator<Subject> entityValidator = new EntityValidator<>();
 
@@ -58,7 +62,7 @@ public class SubjectServiceImpl implements ISubjectService {
 	@Transactional(readOnly = true)
 	@Override
 	public List<Subject> findSubjectByCourseId(Long id) throws DataNotFoundException {
-		this.findOne(id);
+		this.courseService.findOne(id);
 		return this.subjectDao.findSubjectByCourseId(id);
 	}
 

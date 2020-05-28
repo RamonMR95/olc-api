@@ -50,15 +50,13 @@ public class ExamServiceImpl implements IExamService {
 	@Override
 	public Exam update(Exam exam, Long id) throws EntityValidationException, DataNotFoundException {
 		Exam updatedExam = this.findOne(id);
-		updatedExam.setCourse(exam.getCourse());
-		updatedExam.setDate(exam.getDate());
-		updatedExam.setMark(exam.getMark());
-		updatedExam.setSubject(exam.getSubject());
 
-		if (this.entityValidator.isEntityValid(updatedExam)) {
+		if (this.entityValidator.isEntityValid(exam)) {
+			updatedExam.setDate(exam.getDate());
+			updatedExam.setMark(exam.getMark());
 			return this.examDao.save(updatedExam);
 		}
-		throw new EntityValidationException(this.entityValidator.getEntityValidationErrorsString(updatedExam));
+		throw new EntityValidationException(this.entityValidator.getEntityValidationErrorsString(exam));
 	}
 
 	@Transactional

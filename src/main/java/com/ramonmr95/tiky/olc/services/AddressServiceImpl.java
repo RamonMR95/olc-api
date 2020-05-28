@@ -45,21 +45,21 @@ public class AddressServiceImpl implements IAddressService {
 		}
 		throw new EntityValidationException(this.entityValidator.getEntityValidationErrorsString(address));
 	}
-	
+
 	@Transactional
 	@Override
 	public Address update(Address address, Long id) throws DataNotFoundException, EntityValidationException {
 		Address updatedAddress = this.findOne(id);
-		updatedAddress.setStreet(address.getStreet());
-		updatedAddress.setProvince(address.getProvince());
-		updatedAddress.setCity(address.getCity());
-		updatedAddress.setZip(address.getZip());
-		updatedAddress.setCountry(address.getCountry());
-
-		if (this.entityValidator.isEntityValid(updatedAddress)) {
+		
+		if (this.entityValidator.isEntityValid(address)) {
+			updatedAddress.setStreet(address.getStreet());
+			updatedAddress.setProvince(address.getProvince());
+			updatedAddress.setCity(address.getCity());
+			updatedAddress.setZip(address.getZip());
+			updatedAddress.setCountry(address.getCountry());
 			return this.addressDao.save(updatedAddress);
 		}
-		throw new EntityValidationException(this.entityValidator.getEntityValidationErrorsString(updatedAddress));
+		throw new EntityValidationException(this.entityValidator.getEntityValidationErrorsString(address));
 	}
 
 	@Transactional
