@@ -37,7 +37,9 @@ public class Exam implements Serializable {
 	@OneToOne
 	private Subject subject;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
+	@JoinColumn(nullable = false)
+	@NotNull(message = "The course is required")
 	private Course course;
 
 	@Temporal(TemporalType.DATE)

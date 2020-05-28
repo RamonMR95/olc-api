@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ramonmr95.tiky.olc.dtos.CourseDto;
 import com.ramonmr95.tiky.olc.entities.Course;
 import com.ramonmr95.tiky.olc.entities.Subject;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
@@ -86,9 +85,9 @@ public class CourseController {
 			Course updatedCourse = this.courseService.update(course, id);
 			return new ResponseEntity<>(updatedCourse, HttpStatus.OK);
 		} catch (DataNotFoundException e) {
-			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.BAD_REQUEST);
-		} catch (EntityValidationException e) {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
+		} catch (EntityValidationException e) {
+			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.BAD_REQUEST);
 		}
 	}
 
@@ -108,7 +107,7 @@ public class CourseController {
 		List<Subject> subjects;
 		try {
 			subjects = this.subjectService.findSubjectByCourseId(id);
-			if (subjects != null) {
+			if (!subjects.isEmpty()) {
 				return new ResponseEntity<>(subjects, HttpStatus.OK);
 			}
 			return new ResponseEntity<>(
