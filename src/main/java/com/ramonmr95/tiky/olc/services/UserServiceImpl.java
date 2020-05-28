@@ -52,19 +52,16 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User update(User user, Long id) throws DataNotFoundException, EntityValidationException {
 		User newUser = this.findOne(id);
-		Role role = this.roleServiceImpl.findOne(user.getRole().getId());
-		newUser.setRole(role);
-		newUser.setName(user.getName());
-		newUser.setSurName(user.getSurName());
-		newUser.setNickName(user.getNickName());
-		newUser.setEmail(user.getEmail());
-		newUser.setActive(user.isActive());
-		newUser.setPassword(user.getPassword());
-		newUser.setAbout(user.getAbout());
-		newUser.setPhoto(user.getPhoto());
-
+		
 		if (this.entityValidator.isEntityValid(user)) {
-			return this.userDao.save(user);
+			Role role = this.roleServiceImpl.findOne(user.getRole().getId());
+			newUser.setRole(role);
+			newUser.setName(user.getName());
+			newUser.setSurName(user.getSurName());
+			newUser.setPassword(user.getPassword());
+			newUser.setAbout(user.getAbout());
+			newUser.setPhoto(user.getPhoto());
+			return this.userDao.save(newUser);
 		}
 		throw new EntityValidationException(this.entityValidator.getEntityValidationErrorsString(user));
 	}
@@ -103,12 +100,6 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public List<User> findAllUsersPerCourse(Long course_id) {
 		return this.userDao.findAllUsersPerCourse(course_id);
-	}
-
-	@Transactional(readOnly = true)
-	@Override
-	public User findByNickName(String nickName) {
-		return this.userDao.findByNickName(nickName);
 	}
 
 	@Transactional(readOnly = true)

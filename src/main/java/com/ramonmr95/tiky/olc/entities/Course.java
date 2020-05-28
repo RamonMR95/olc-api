@@ -55,6 +55,7 @@ public class Course implements Serializable {
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
+	@Column(nullable = true)
 	private List<Exam> exams;
 
 	private String photo;

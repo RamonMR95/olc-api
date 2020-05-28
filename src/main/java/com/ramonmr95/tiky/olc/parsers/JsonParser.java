@@ -78,12 +78,8 @@ public class JsonParser {
 		try {
 			map = objectMapper.readValue(json, new TypeReference<Map<String, Set<String>>>() {
 			});
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
+		} catch (JsonProcessingException e) {}
 		return map;
-//		return new Gson().fromJson(json, new TypeToken<Map<String, Set<String>>>() {
-//		}.getType());
 	}
 
 }

@@ -1,0 +1,1973 @@
+{
+	"info": {
+		"_postman_id": "a10c01d1-2185-436d-b5f3-e67c054cc7b6",
+		"name": "olc-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "users create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "232a47e3-2383-48de-8ecc-3fc1d6811e58",
+								"exec": [
+									"// Setting up user id global variable.\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"userId\", jsonData.id);\r",
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "U",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"address\": {\r\n            \"street\": \"123 main st\",\r\n            \"province\": \"New York\",\r\n            \"city\": \"Manhattan\",\r\n            \"zip\": \"66666\",\r\n            \"country\": \"USA\"\r\n        },\r\n        \"role\": {\r\n            \"id\": 2\r\n        },\r\n        \"course\": {\r\n            \"id\": 1\r\n        },\r\n        \"name\": \"Paco\",\r\n        \"surName\": \"Lopez\",\r\n        \"nickName\": \"pac\",\r\n        \"email\": \"pl@gmail.com\",\r\n        \"password\": \":(\",\r\n        \"birthDate\": \"1998-04-15\",\r\n        \"about\": \"My about\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}/users/create",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"users",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users 400 create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9281bcd0-d397-4a88-a81a-e51bcbc43987",
+								"exec": [
+									"// Setting up user id global variable.\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "U",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"address\": {\r\n            \"street\": \"123 main st\",\r\n            \"province\": \"New York\",\r\n            \"city\": \"Manhattan\",\r\n            \"zip\": \"66666\",\r\n            \"country\": \"USA\"\r\n        },\r\n        \"role\": {\r\n            \"id\": 2\r\n        },\r\n        \"course\": {\r\n            \"id\": 1\r\n        },\r\n        \"surName\": \"Lopez\",\r\n        \"nickName\": \"pac\",\r\n        \"email\": \"pl@gmail.com\",\r\n        \"password\": \":(\",\r\n        \"birthDate\": \"1998-04-15\",\r\n        \"about\": \"My about\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}/users/create",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"users",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users get all users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "60f62e2e-dcc2-4001-b7d7-0e9e2546fcaa",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/users/list",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"users",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users get user by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0f2cc1d6-58d6-4d79-a072-515f8221ef92",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/users?id={{userId}}",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{userId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users 404 get user by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "47536d14-3298-41f8-86c4-e020034b32b4",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/users?id=5555",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5555"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users get marks by user id and course year start",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/users/marks?id=1&year_start=1992/05/07",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"users",
+								"marks"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "year_start",
+									"value": "1992/05/07"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users get roles by user id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "560fb5d6-fde5-4a42-9a29-0bd902461a19",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/users/role?user_id={{userId}}",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"users",
+								"role"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "{{userId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "136ab793-84ca-461d-b8e6-76255c617016",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"role\": {\r\n            \"id\": 1\r\n        },\r\n        \"name\": \"Pepe\",\r\n        \"surName\": \"popa\",\r\n        \"email\": \"juan@adasddasd.com\",\r\n        \"password\": \":)\",\r\n        \"active\": true,\r\n        \"birthDate\": \"1992-01-01\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}/users?id={{userId}}",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{userId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users 404 update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7df60022-dd75-4fa4-b7b1-fb01767c623f",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\": {\r\n        \"id\": 1\r\n    },\r\n    \"name\": \"Pepe\",\r\n    \"surName\": \"popa\",\r\n    \"email\": \"juan@adasddasd.com\",\r\n    \"password\": \":)\",\r\n    \"active\": true,\r\n    \"birthDate\": \"1992-01-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}/users?id=5555555",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5555555"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users 400 update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d9a4f903-cd9d-47b0-b87a-b4ef71935929",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"role\": {\r\n            \"id\": 1\r\n        },\r\n        \"surName\": \"popa\",\r\n        \"email\": \"juan@adasddasd.com\",\r\n        \"password\": \":)\",\r\n        \"active\": true,\r\n        \"birthDate\": \"1992-01-01\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}/users?id={{userId}}",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{userId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "addresses",
+			"item": [
+				{
+					"name": "addresses create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2910be2b-802a-490a-a049-3128551e5a34",
+								"exec": [
+									"// Setting up address id global variable.\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"addressId\", jsonData.id);\r",
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "U",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"street\": \"456 web st\",\r\n        \"province\": \"Mac\",\r\n        \"city\": \"LA\",\r\n        \"zip\": \"77777\",\r\n        \"country\": \"USA\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}/addresses/create",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"addresses",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addresses 400 create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b64ea63a-5db2-4e6f-8cb6-457d0375f0b1",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json;charset=UTF-8",
+								"disabled": true
+							},
+							{
+								"key": "Accept-Encoding",
+								"type": "text",
+								"value": "U",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"province\": \"Mac\",\r\n        \"city\": \"LA\",\r\n        \"zip\": \"77777\",\r\n        \"country\": \"USA\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}/addresses/create",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"addresses",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addresses get all addresses",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "681902a2-e377-41aa-bed2-16cee350fc1f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/addresses/list",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"addresses",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addresses get address  by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "35cc644c-d46c-47e8-9fbc-d1250ac0b988",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/addresses?id={{addressId}}",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"addresses"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{addressId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addresses 404 get address  by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ac6392f7-fb33-4369-a45b-b75d27e40731",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/addresses?id=44444444",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"addresses"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "44444444"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addresses get user by address id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/addresses/address?user_id=1",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"addresses",
+								"address"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "address update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0481e48b-70f7-474a-9394-0399f1e08044",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"street\": \"4567 web st\",\r\n        \"province\": \"Mac\",\r\n        \"city\": \"LA\",\r\n        \"zip\": \"77777\",\r\n        \"country\": \"USA\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}/addresses?id={{addressId}}",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"addresses"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{addressId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "address 400 update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "79797e41-e4a1-4edb-852a-ca660ad808b6",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"street\": \"456 web st\",\r\n        \"province\": \"Mac\",\r\n        \"city\": \"LA\",\r\n        \"zip\": \"77777\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}/addresses?id={{addressId}}",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"addresses"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{addressId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "address 404 update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d3b57d1-9ad6-42a6-a8f3-6ceac39cb621",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"street\": \"456 web st\",\r\n        \"province\": \"Mac\",\r\n        \"city\": \"LA\",\r\n        \"zip\": \"77777\",\r\n        \"country\": \"USA\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}/addresses?id=44444",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"addresses"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "44444"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "courses",
+			"item": [
+				{
+					"name": "courses create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "78194732-cc91-4ffc-a9cd-5f98228b601c",
+								"exec": [
+									"// Setting up course id global variable.\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"courseId\", jsonData.id);\r",
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "U",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"courseName\": \"ASIR\",\r\n    \"yearStart\": \"1996-05-07\",\r\n    \"yearEnd\": \"1996-06-07\",\r\n    \"schedule\": \"morning\",\r\n    \"photo\": null\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}/courses/create",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"courses",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "courses 400 create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "26b9742b-a75d-4b1c-85a9-e1ef4ee1cfa2",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "U",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"yearStart\": \"1996-05-07\",\r\n    \"yearEnd\": \"1996-06-07\",\r\n    \"schedule\": \"morning\",\r\n    \"photo\": null\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}/courses/create",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"courses",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "courses get all courses",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d551be71-20ab-4214-88eb-dd0fa7f422c7",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/courses/list",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"courses",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "courses get course by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "475b3981-bbc5-4dc6-b784-c9473b262d24",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/courses?id={{courseId}}",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"courses"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{courseId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "courses 404 get course by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6ee4f084-80ca-400d-8a2b-d5c1568472ae",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/courses?id=22222",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"courses"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "22222"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "courses get subjects by course id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f08bd616-1e9c-4827-a1e1-3b2cbe445b31",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/courses/subjects?course_id={{courseId}}",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"courses",
+								"subjects"
+							],
+							"query": [
+								{
+									"key": "course_id",
+									"value": "{{courseId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "courses 404 get subjects by course id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "29a0f030-6f2b-40f3-9c7e-e7ae49da6761",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/courses/subjects?course_id=444444",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"courses",
+								"subjects"
+							],
+							"query": [
+								{
+									"key": "course_id",
+									"value": "444444"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "courses get course by user id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a3e2dfdd-44bf-45f4-933b-336505c94ec1",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/courses/course?user_id={{userId}}",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"courses",
+								"course"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "{{userId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "courses update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a85d6226-5132-4775-aaf8-b5ae75d01bff",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"courseName\": \"ASIRR\",\r\n    \"yearStart\": \"1996-05-07\",\r\n    \"yearEnd\": \"1996-06-07\",\r\n    \"schedule\": \"morning\",\r\n    \"photo\": null\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}/courses?id={{courseId}}",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"courses"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{courseId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "courses 400 update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "527e828c-f35a-49cd-afca-f7a07346965f",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"yearStart\": \"1996-05-07\",\r\n    \"yearEnd\": \"1996-06-07\",\r\n    \"schedule\": \"morning\",\r\n    \"photo\": null\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}/courses?id={{courseId}}",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"courses"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{courseId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "courses 404 update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "59fc242b-93b6-41d6-baf3-42454a827cfe",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"courseName\": \"ASIRR\",\r\n    \"yearStart\": \"1996-05-07\",\r\n    \"yearEnd\": \"1996-06-07\",\r\n    \"schedule\": \"morning\",\r\n    \"photo\": null\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}/courses?id=444444",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"courses"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "444444"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "exams",
+			"item": [
+				{
+					"name": "exams create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b2865000-172e-4c8e-8035-3f4bc58868c4",
+								"exec": [
+									"// Setting up exam id global variable.\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"examId\", jsonData.id);\r",
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "U",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"course\": {\r\n        \"id\": 1\r\n    },\r\n    \"date\": \"1992-05-07\",\r\n    \"mark\": 1.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}/exams/create",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"exams",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "exams 400 create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5ccc9bff-dfe3-4efc-98e0-205ae8313695",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json;charset=UTF-8",
+								"disabled": true
+							},
+							{
+								"key": "Accept-Encoding",
+								"type": "text",
+								"value": "U",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"1992-05-07\",\r\n    \"mark\": 1.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}/exams/create",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"exams",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "exams get all exams",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fab73920-b889-42ce-a261-90d6bf41c12a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/exams/list",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"exams",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "exams get exam by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1fd2fef3-4e5f-46c6-a442-7df858245caf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/exams?id={{examId}}",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"exams"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{examId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "exams get exams by course and subject id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/exams/exam?course_id=1&subject_id=1",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"exams",
+								"exam"
+							],
+							"query": [
+								{
+									"key": "course_id",
+									"value": "1"
+								},
+								{
+									"key": "subject_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "exams update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"course\": {\r\n        \"id\": 1\r\n    },\r\n    \"date\": \"1992-05-07\",\r\n    \"mark\": 3.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}/exams?id={{examId}}",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"exams"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{examId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "exams 400 update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6f33c594-bbfd-4b39-ba96-bfb34ce5f463",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"course\": {\r\n        \"id\": 1\r\n    },\r\n    \"mark\": 1.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}/exams?id={{examId}}",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"exams"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{examId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "exams 404 update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "99716068-9028-40f3-9c6f-14db6eb795b3",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"course\": {\r\n        \"id\": 1\r\n    },\r\n    \"date\": \"1992-05-07\",\r\n    \"mark\": 1.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiHost}}/exams?id=12312313",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"exams"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "12312313"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "delete",
+			"item": [
+				{
+					"name": "users delete user by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2da4e1c7-e519-4a88-a54d-e44e195c68f1",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/users?id={{userId}}",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{userId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users 404 delete user by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "413839e3-c0d6-47eb-898f-281b3c761f3f",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/users?id=5555555",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5555555"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "address delete address by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2863d343-9f53-40bb-bda3-ab538dedf2fe",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/addresses?id={{addressId}}",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"addresses"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{addressId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "address 404 delete address by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b1c62194-8095-4d72-bcf8-876b745ff01b",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/addresses?id=44444444",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"addresses"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "44444444"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "course delete course by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d6d2706d-4031-4f37-ad7b-54908cf8fac7",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/courses?id={{courseId}}",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"courses"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{courseId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "course 404 delete course by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ee659ded-4906-450b-ae82-2d16d974d133",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/courses?id=55555555",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"courses"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "55555555"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "exams delete exam by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1f929dc4-c14f-426d-a06f-70f23a7d6979",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/exams?id={{examId}}",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"exams"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{examId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "exams 404 delete exam by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "51bf3a81-d440-4122-b4e2-79b0aebe9b51",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{apiHost}}/exams?id=2222222",
+							"host": [
+								"{{apiHost}}"
+							],
+							"path": [
+								"exams"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2222222"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "810a4516-b0d1-4103-ae05-ab916c5d87b9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "110d7f32-e5a3-4bdf-93d3-4e61205c74f1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "a3613bd1-2303-43e4-bdb5-35e0ff6d93a6",
+			"key": "apiHost",
+			"value": "http://localhost:8080/api",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

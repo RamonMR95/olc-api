@@ -21,8 +21,6 @@ public interface IUserDao extends CrudRepository<User, Long> {
 	@Query(value = "SELECT u FROM User u WHERE course_id = ?1")
 	public List<User> findAllUsersPerCourse(Long course_id);
 
-	public User findByNickName(String nickName);
-
 	public User findByEmail(String email);
 
 	@Query(value = "SELECT r FROM Role r INNER JOIN User u ON r.id = u.role WHERE u.id = ?1")
