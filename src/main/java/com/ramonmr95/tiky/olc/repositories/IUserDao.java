@@ -20,9 +20,9 @@ public interface IUserDao extends CrudRepository<User, Long> {
 
 	@Query(value = "SELECT u FROM User u WHERE course_id = ?1")
 	public List<User> findAllUsersPerCourse(Long course_id);
-
-	public User findByEmail(String email);
-
+	
+	public User findByEmailAndPassword(String email, String password);
+	
 	@Query(value = "SELECT r FROM Role r INNER JOIN User u ON r.id = u.role WHERE u.id = ?1")
 	public Role findRoleByUserId(Long id);
 
@@ -32,5 +32,5 @@ public interface IUserDao extends CrudRepository<User, Long> {
 	@Modifying
 	@Query(value = "UPDATE User u SET u.active = ?2 WHERE u.id = ?1")
 	public void updateStateUser(int user_id, boolean active);
-
+	
 }
