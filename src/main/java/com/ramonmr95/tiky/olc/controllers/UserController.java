@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +23,6 @@ import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
 import com.ramonmr95.tiky.olc.parsers.JsonParser;
 import com.ramonmr95.tiky.olc.services.interfaces.IUserService;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -32,7 +31,10 @@ public class UserController {
 	private IUserService userServiceImpl;
 
 	private JsonParser parser = new JsonParser();
-
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncode;
+	
 	@GetMapping("/list")
 	public ResponseEntity<?> list() {
 		List<User> users = this.userServiceImpl.findAll();
@@ -58,6 +60,7 @@ public class UserController {
 	@PostMapping(path = "/create", produces = { "application/json" }, consumes = { "application/json" })
 	public ResponseEntity<?> createUser(@RequestBody User user) {
 		try {
+			user.setPassword(passwordEncode.encode(user.getPassword()));
 			User newUser = this.userServiceImpl.save(user);
 			return new ResponseEntity<>(newUser, HttpStatus.CREATED);
 		} catch (EntityValidationException e) {

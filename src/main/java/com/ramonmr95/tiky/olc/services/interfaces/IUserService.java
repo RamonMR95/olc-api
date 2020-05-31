@@ -25,6 +25,8 @@ public interface IUserService {
 
 	public List<User> findAllUsersPerCourse(Long course_id);
 
+	public User findByEmailAndPassword(String email, String password);
+	
 	public User findByEmail(String email);
 
 	public Role findRoleByUserId(Long id) throws DataNotFoundException;

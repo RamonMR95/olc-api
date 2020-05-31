@@ -23,7 +23,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private IRoleService roleServiceImpl;
-	
+
 	@Autowired
 	private ICourseService courseService;
 
@@ -52,7 +52,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User update(User user, Long id) throws DataNotFoundException, EntityValidationException {
 		User newUser = this.findOne(id);
-		
+
 		if (this.entityValidator.isEntityValid(user)) {
 			Role role = this.roleServiceImpl.findOne(user.getRole().getId());
 			newUser.setRole(role);
@@ -104,12 +104,6 @@ public class UserServiceImpl implements IUserService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public User findByEmail(String email) {
-		return this.userDao.findByEmail(email);
-	}
-
-	@Transactional(readOnly = true)
-	@Override
 	public Role findRoleByUserId(Long id) throws DataNotFoundException {
 		this.findOne(id);
 		return this.userDao.findRoleByUserId(id);
@@ -121,9 +115,21 @@ public class UserServiceImpl implements IUserService {
 		this.courseService.findOne(courseId);
 		User user = this.userDao.findMentorByCourseId(courseId);
 		if (user == null) {
-			throw new DataNotFoundException("Course with id '" + courseId + "' doesn't have any mentor"); 
+			throw new DataNotFoundException("Course with id '" + courseId + "' doesn't have any mentor");
 		}
 		return user;
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public User findByEmailAndPassword(String email, String password) {
+		return this.userDao.findByEmailAndPassword(email, password);
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public User findByEmail(String email) {
+		return this.userDao.findByEmail(email);
 	}
 
 }
