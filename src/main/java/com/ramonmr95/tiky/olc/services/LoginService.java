@@ -2,6 +2,8 @@ package com.ramonmr95.tiky.olc.services;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -26,11 +28,16 @@ public class LoginService implements ILoginService {
 	private Environment env;
 
 	@Override
-	public String login(String email, String password) throws InvalidCredentialsException {
+	public Map<String, String> login(String email, String password) throws InvalidCredentialsException {
 		User user = this.userService.findByEmailAndPassword(email, password);
 
 		if (user != null) {
-			return generateToken(user);
+			Map<String, String> loginData = new HashMap<>();
+			String token = generateToken(user);
+			loginData.put("auth_token", token);
+			loginData.put("email", user.getEmail());
+			loginData.put("role", user.getRole().getName());
+			return loginData;
 		}
 		throw new InvalidCredentialsException("Invalid credentials");
 	}

@@ -1,5 +1,7 @@
 package com.ramonmr95.tiky.olc.controllers;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +27,8 @@ public class LoginController {
 	@PostMapping
 	public ResponseEntity<?> login(@RequestBody Login login) {
 		try {
-			String jwtToken = this.loginService.login(login.getEmail(), login.getPassword());
-			return new ResponseEntity<>(this.parser.parseToMap("jwt", jwtToken), HttpStatus.OK);
+			Map<String, String> loginData = this.loginService.login(login.getEmail(), login.getPassword());
+			return new ResponseEntity<>(loginData, HttpStatus.OK);
 		} catch (InvalidCredentialsException e) {
 			return new ResponseEntity<>(this.parser.parseToMap("errors", e.getMessage()), HttpStatus.BAD_REQUEST);
 		}
