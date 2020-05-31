@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,7 +31,10 @@ public class UserController {
 	private IUserService userServiceImpl;
 
 	private JsonParser parser = new JsonParser();
-
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncode;
+	
 	@GetMapping("/list")
 	public ResponseEntity<?> list() {
 		List<User> users = this.userServiceImpl.findAll();
@@ -56,6 +60,7 @@ public class UserController {
 	@PostMapping(path = "/create", produces = { "application/json" }, consumes = { "application/json" })
 	public ResponseEntity<?> createUser(@RequestBody User user) {
 		try {
+			user.setPassword(passwordEncode.encode(user.getPassword()));
 			User newUser = this.userServiceImpl.save(user);
 			return new ResponseEntity<>(newUser, HttpStatus.CREATED);
 		} catch (EntityValidationException e) {
