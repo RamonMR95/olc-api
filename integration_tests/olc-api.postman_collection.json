@@ -54,6 +54,49 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "401 login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aeea448b-4537-452b-88ab-0f4000b5b758",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"ramonmr16@gmail.com\",\n\t\"password\": \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -2476,7 +2519,7 @@
 	],
 	"variable": [
 		{
-			"id": "e4779649-900d-42b3-9b05-f25523341313",
+			"id": "d7505e02-d6a7-4bc1-a819-3ec4587437b7",
 			"key": "apiHost",
 			"value": "http://localhost:8080/api",
 			"type": "string"
