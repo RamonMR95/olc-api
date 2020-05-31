@@ -102,8 +102,6 @@ public class UserServiceImpl implements IUserService {
 		return this.userDao.findAllUsersPerCourse(course_id);
 	}
 
-
-
 	@Transactional(readOnly = true)
 	@Override
 	public Role findRoleByUserId(Long id) throws DataNotFoundException {
@@ -126,6 +124,12 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User findByEmailAndPassword(String email, String password) {
 		return this.userDao.findByEmailAndPassword(email, password);
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public User findByEmail(String email) {
+		return this.userDao.findByEmail(email);
 	}
 
 }

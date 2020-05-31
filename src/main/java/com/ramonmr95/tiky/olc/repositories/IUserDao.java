@@ -23,6 +23,8 @@ public interface IUserDao extends CrudRepository<User, Long> {
 	
 	public User findByEmailAndPassword(String email, String password);
 	
+	public User findByEmail(String email);
+	
 	@Query(value = "SELECT r FROM Role r INNER JOIN User u ON r.id = u.role WHERE u.id = ?1")
 	public Role findRoleByUserId(Long id);
 
