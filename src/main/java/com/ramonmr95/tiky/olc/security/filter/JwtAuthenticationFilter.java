@@ -9,11 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.ramonmr95.tiky.olc.exceptions.InvalidCredentialsException;
 import com.ramonmr95.tiky.olc.services.interfaces.ILoginService;
 
+@Service
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 	@Autowired
@@ -33,6 +35,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 				response.sendError(HttpServletResponse.SC_FORBIDDEN, e.getMessage());
 			}
 		}
+	}
+
+	@Override
+	protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+		return request.getRequestURI().equals("/api/login") || request.getRequestURI().equals("/api/users/create");
 	}
 
 }
