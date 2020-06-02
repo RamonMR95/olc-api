@@ -35,4 +35,7 @@ public interface IUserDao extends CrudRepository<User, Long> {
 	@Query(value = "UPDATE User u SET u.active = ?2 WHERE u.id = ?1")
 	public void updateStateUser(int user_id, boolean active);
 	
+	@Query(nativeQuery = true, value = "SELECT * FROM users u WHERE u.mentor_id = ?1")
+	public User findMentorById(Long id);
+		
 }

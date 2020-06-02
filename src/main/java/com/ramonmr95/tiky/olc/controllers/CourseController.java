@@ -1,6 +1,7 @@
 package com.ramonmr95.tiky.olc.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ramonmr95.tiky.olc.entities.Course;
-import com.ramonmr95.tiky.olc.entities.Subject;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
 import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
 import com.ramonmr95.tiky.olc.parsers.JsonParser;
@@ -47,9 +47,8 @@ public class CourseController {
 
 	@GetMapping
 	public ResponseEntity<?> getCourse(@RequestParam Long id) {
-		Course course;
 		try {
-			course = this.courseService.findOne(id);
+			Course course = this.courseService.findOne(id);
 			return new ResponseEntity<>(course, HttpStatus.OK);
 		} catch (DataNotFoundException e) {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
@@ -102,10 +101,9 @@ public class CourseController {
 
 	@GetMapping("/subjects")
 	public ResponseEntity<?> getSubjectsByCourseId(@RequestParam(value = "course_id") Long id) {
-		List<Subject> subjects;
 		try {
-			subjects = this.subjectService.findSubjectByCourseId(id);
-			if (!subjects.isEmpty()) {
+			List<String> subjects = this.subjectService.findSubjectByCourseId(id);
+			if (subjects != null && !subjects.isEmpty()) {
 				return new ResponseEntity<>(subjects, HttpStatus.OK);
 			}
 			return new ResponseEntity<>(
@@ -115,6 +113,19 @@ public class CourseController {
 			return new ResponseEntity<>(
 					this.parser.parseToMap("errors", "The course with id: " + id + " does not exist."),
 					HttpStatus.NOT_FOUND);
+		}
+
+	}
+
+	@GetMapping("/course/subjects")
+	public ResponseEntity<?> findSubjectNameAndMentorNameAndCourseNameAndCourseDateByMentorId(
+			@RequestParam(value = "mentor_id") Long id) {
+		try {
+			Map<String, Object> data = this.courseService
+					.findSubjectNameAndMentorNameAndCourseNameAndCourseDateByMentorId(id);
+			return new ResponseEntity<>(data, HttpStatus.OK);
+		} catch (DataNotFoundException e) {
+			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
 		}
 
 	}

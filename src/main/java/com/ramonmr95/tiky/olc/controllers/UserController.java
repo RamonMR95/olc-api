@@ -20,6 +20,7 @@ import com.ramonmr95.tiky.olc.entities.Role;
 import com.ramonmr95.tiky.olc.entities.User;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
 import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
+import com.ramonmr95.tiky.olc.exceptions.UserAlreadyEnrolledException;
 import com.ramonmr95.tiky.olc.parsers.JsonParser;
 import com.ramonmr95.tiky.olc.services.interfaces.IUserService;
 
@@ -32,9 +33,13 @@ public class UserController {
 
 	private JsonParser parser = new JsonParser();
 	
+	private static final String emailRegex = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\"
+			+ "x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9]"
+			+ "(?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
+
 	@Autowired
 	private BCryptPasswordEncoder passwordEncode;
-	
+
 	@GetMapping("/list")
 	public ResponseEntity<?> list() {
 		List<User> users = this.userServiceImpl.findAll();
@@ -121,13 +126,39 @@ public class UserController {
 	}
 
 	@GetMapping("/mentor")
-	public ResponseEntity<?> getMentorByCourseId(@RequestParam(name = "mentor_id") Long courseId) {
+	public ResponseEntity<?> getMentorByCourseId(@RequestParam(name = "course_id") Long courseId) {
 		User user;
 		try {
 			user = this.userServiceImpl.findMentorByCourseId(courseId);
 			return new ResponseEntity<>(user, HttpStatus.OK);
 		} catch (DataNotFoundException e) {
 			return new ResponseEntity<>(this.parser.parseToMap("errors", e.getMessage()), HttpStatus.NOT_FOUND);
+		}
+	}
+
+
+	@GetMapping("/email")
+	public ResponseEntity<?> findUserByEmail(@RequestParam String email) {
+		if (!email.matches(emailRegex)) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		User user = this.userServiceImpl.findByEmail(email);
+		if (user != null) {
+			return new ResponseEntity<>(user, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+
+	@GetMapping("/enroll")
+	public ResponseEntity<?> enroll(@RequestParam(name = "user_id") Long userId,
+			@RequestParam(name = "course_id") Long courseId) {
+		try {
+			this.userServiceImpl.enroll(userId, courseId);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (DataNotFoundException e) {
+			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
+		} catch (UserAlreadyEnrolledException e) {
+			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.BAD_REQUEST);
 		}
 	}
 

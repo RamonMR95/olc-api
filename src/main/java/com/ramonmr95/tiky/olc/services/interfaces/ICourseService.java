@@ -1,6 +1,7 @@
 package com.ramonmr95.tiky.olc.services.interfaces;
 
 import java.util.List;
+import java.util.Map;
 
 import com.ramonmr95.tiky.olc.entities.Course;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
@@ -19,4 +20,7 @@ public interface ICourseService {
 	public void delete(Long id) throws DataNotFoundException;
 	
 	public List<Course> findCoursesByUserId(Long id) throws DataNotFoundException;
+	
+	public Map<String, Object> findSubjectNameAndMentorNameAndCourseNameAndCourseDateByMentorId(Long id) throws DataNotFoundException;
+	
 }
