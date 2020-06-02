@@ -7,6 +7,7 @@ import com.ramonmr95.tiky.olc.entities.Role;
 import com.ramonmr95.tiky.olc.entities.User;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
 import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
+import com.ramonmr95.tiky.olc.exceptions.UserAlreadyEnrolledException;
 
 public interface IUserService {
 
@@ -32,5 +33,12 @@ public interface IUserService {
 	public Role findRoleByUserId(Long id) throws DataNotFoundException;
 
 	public User findMentorByCourseId(Long courseId) throws DataNotFoundException;
+	
+	public User findMentorById(Long id) throws DataNotFoundException;
+	
+	public Map<Long, String> findMentorsByCourse() throws DataNotFoundException;
+	
+	public void enroll(Long userId, Long courseId) throws DataNotFoundException, UserAlreadyEnrolledException;
+
 
 }

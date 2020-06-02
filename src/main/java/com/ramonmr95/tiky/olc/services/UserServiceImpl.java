@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ramonmr95.tiky.olc.entities.Course;
 import com.ramonmr95.tiky.olc.entities.Role;
 import com.ramonmr95.tiky.olc.entities.User;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
 import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
+import com.ramonmr95.tiky.olc.exceptions.UserAlreadyEnrolledException;
 import com.ramonmr95.tiky.olc.repositories.IUserDao;
 import com.ramonmr95.tiky.olc.services.interfaces.ICourseService;
 import com.ramonmr95.tiky.olc.services.interfaces.IRoleService;
@@ -26,7 +28,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private ICourseService courseService;
-
+	
 	private EntityValidator<User> entityValidator = new EntityValidator<>();
 
 	@Autowired
@@ -130,6 +132,47 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User findByEmail(String email) {
 		return this.userDao.findByEmail(email);
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public User findMentorById(Long id) throws DataNotFoundException {
+		User user =  this.userDao.findMentorById(id);
+		if (user != null) {
+			return user;
+		}
+		return null;
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public Map<Long, String> findMentorsByCourse() throws DataNotFoundException {
+		List<Course> courses = this.courseService.findAll();
+		
+		Map<Long, String> data = new HashMap<>();
+
+		for (Course course : courses) {
+			User usr = this.findMentorById(course.getId());
+			if (usr != null)  {
+				data.put(course.getId(), usr.getName());
+			} else {
+				data.put(course.getId(), "");
+			}
+		}
+		return data;
+	}
+
+	@Transactional
+	@Override
+	public void enroll(Long userId, Long courseId) throws DataNotFoundException, UserAlreadyEnrolledException {
+		User user = this.findOne(userId);
+		if (user.getCourse().getId() != courseId) {
+			Course course = this.courseService.findOne(courseId);
+			user.setCourse(course);
+		} else {
+			throw new UserAlreadyEnrolledException("User with id: " + userId + " is already enrolled to course with id: " + courseId);
+		}
+
 	}
 
 }

@@ -34,7 +34,6 @@ public class JsonParser {
 			e.printStackTrace();
 		}
 		return json;
-//		return new Gson().toJson(map);
 	}
 
 	/**
