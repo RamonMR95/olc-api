@@ -175,4 +175,15 @@ public class UserServiceImpl implements IUserService {
 
 	}
 
+	@Transactional
+	@Override
+	public User updatePhoto(Long userId, String url) throws DataNotFoundException, EntityValidationException {
+		User user = this.findOne(userId);
+		if (url != null) {
+			user.setPhoto(url);
+			return user;
+		}
+		throw new EntityValidationException("The photo url is required");
+	}
+
 }

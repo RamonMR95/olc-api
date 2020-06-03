@@ -161,5 +161,17 @@ public class UserController {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@GetMapping("/photo")
+	public ResponseEntity<?> updatePhoto(@RequestParam(name = "user_id") Long userId, @RequestParam String url) {
+		try {
+			User user = this.userServiceImpl.updatePhoto(userId, url);
+			return new ResponseEntity<>(user, HttpStatus.OK);
+		} catch (DataNotFoundException e) {
+			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
+		} catch (EntityValidationException e) {
+			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.BAD_REQUEST);
+		}
+	}
 
 }

@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "answers")
 public class Answer implements Serializable {
@@ -23,6 +25,7 @@ public class Answer implements Serializable {
 
 	private boolean correct;
 
+	@JsonIgnore
 	@ManyToOne
 	private Question question;
 

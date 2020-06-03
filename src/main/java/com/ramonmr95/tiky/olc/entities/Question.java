@@ -10,6 +10,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.modelmapper.ModelMapper;
+
+import com.ramonmr95.tiky.olc.dtos.QuestionDto;
+
 @Entity
 @Table(name = "questions")
 public class Question implements Serializable {
@@ -48,6 +52,10 @@ public class Question implements Serializable {
 
 	public void setExam(Exam exam) {
 		this.exam = exam;
+	}
+	
+	public QuestionDto convertToDto() {
+		return new ModelMapper().map(this, QuestionDto.class);
 	}
 
 }
