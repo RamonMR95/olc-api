@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ramonmr95.tiky.olc.entities.Login;
 import com.ramonmr95.tiky.olc.security.jwt.JwtUtils;
 import com.ramonmr95.tiky.olc.security.service.UserDetailsImpl;
+import com.ramonmr95.tiky.olc.services.UserServiceImpl;
 
 @RestController
 @RequestMapping("/api/login")
@@ -30,6 +31,9 @@ public class LoginController {
 	
 	@Autowired
 	private JwtUtils jwtUtils;
+	
+	@Autowired 
+	private UserServiceImpl userServiceImpl;
 
 	@PostMapping
 	public ResponseEntity<?> login(@RequestBody Login login) {
@@ -44,6 +48,7 @@ public class LoginController {
 				.collect(Collectors.toList());
 		
 		Map<String, String> jwtData = new HashMap<>();
+		jwtData.put("id", String.valueOf(this.userServiceImpl.findByEmail(login.getUsername()).getId()));
 		jwtData.put("token", jwt);
 		jwtData.put("role", roles.get(0));
 		jwtData.put("email", login.getUsername());
