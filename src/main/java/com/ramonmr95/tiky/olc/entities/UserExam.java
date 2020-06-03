@@ -15,16 +15,14 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
-import org.modelmapper.ModelMapper;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.ramonmr95.tiky.olc.dtos.ExamDto;
 
 @Entity
 @Table(name = "user_exams")
 public class UserExam implements Serializable {
 
-	private static final long serialVersionUID = 3706876187186768150L;
+	private static final long serialVersionUID = -7243088562494954691L;
+
 	private static final String dateFormat = "yyyy-MM-dd";
 
 	@Id
@@ -33,17 +31,20 @@ public class UserExam implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	@NotNull(message = "The exam date is required")
-	@Column(nullable = false,name = "date_success")
+	@Column(nullable = false, name = "date_success")
 	@JsonFormat(pattern = dateFormat)
 	private Date date;
 
-	@Column(nullable = true)
+	@NotNull(message = "The mark is required")
+	@Column(nullable = false)
 	private Double mark;
 
-	@ManyToOne(optional = true)
-	@JoinColumn(name = "user_id", nullable = true)
+	@NotNull(message = "The user is required")
+	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
+	@NotNull(message = "The exam is required")
 	@ManyToOne
 	@JoinColumn(name = "exam_id")
 	private Exam exam;
@@ -88,8 +89,8 @@ public class UserExam implements Serializable {
 		this.exam = exam;
 	}
 
-	public ExamDto convertToDto() {
-		return new ModelMapper().map(this, ExamDto.class);
-	}
+//	public ExamDto convertToDto() {
+//		return new ModelMapper().map(this, ExamDto.class);
+//	}
 
 }
