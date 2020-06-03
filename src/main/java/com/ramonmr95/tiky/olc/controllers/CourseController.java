@@ -56,10 +56,10 @@ public class CourseController {
 	}
 
 	@GetMapping("/course")
-	public ResponseEntity<?> getCourseByUserId(@RequestParam Long user_id) {
+	public ResponseEntity<?> getCourseByUserId(@RequestParam(value = "user_id") Long id) {
 		List<Course> courses;
 		try {
-			courses = this.courseService.findCoursesByUserId(user_id);
+			courses = this.courseService.findCoursesByUserId(id);
 			return new ResponseEntity<>(courses, HttpStatus.OK);
 		} catch (DataNotFoundException e) {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);

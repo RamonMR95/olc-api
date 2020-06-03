@@ -13,9 +13,11 @@ import com.ramonmr95.tiky.olc.entities.User;
 @Repository
 public interface IUserDao extends CrudRepository<User, Long> {
 
-	@Query(nativeQuery = true, value = "SELECT e.mark, sb.subject_name " + "FROM exams e "
-			+ "INNER JOIN courses co ON co.id = e.course_id " + "INNER JOIN users us ON us.course_id = co.id "
-			+ "INNER JOIN subjects sb ON sb.id = e.subject_id " + "WHERE us.id = ?1 AND co.year_start = ?2")
+	@Query(nativeQuery = true, value = "SELECT ue.mark, sb.subject_name FROM user_exams ue " + 
+			"INNER JOIN exams x ON x.id = ue.exam_id " + 
+			"INNER JOIN subjects sb ON sb.id = x.subject_id " + 
+			"INNER JOIN courses co ON co.id = x.course_id " + 
+			"WHERE ue.user_id = ?1 AND year_start = ?2")
 	public List<Object[]> findMarkAndSubjectsByStudentIdAndYearStart(Long id, String year);
 
 	@Query(value = "SELECT u FROM User u WHERE course_id = ?1")
