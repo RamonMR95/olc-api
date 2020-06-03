@@ -94,7 +94,14 @@ public class UserServiceImpl implements IUserService {
 		this.findOne(id);
 		Map<String, Double> marksMap = new HashMap<>();
 		List<Object[]> marksList = this.userDao.findMarkAndSubjectsByStudentIdAndYearStart(id, year);
-		marksList.forEach(mark -> marksMap.put((String) mark[1], (Double) mark[0]));
+		marksList.forEach(mark -> {
+			
+			if (marksMap.containsKey(mark[1])) {
+				marksMap.put((String) mark[1], (marksMap.get(mark[1]) + (Double) mark[0]) / 2 );
+			} else {
+				marksMap.put((String) mark[1], (Double) mark[0]);
+			}
+		});
 		return marksMap;
 	}
 
