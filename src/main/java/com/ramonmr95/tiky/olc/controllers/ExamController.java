@@ -1,5 +1,6 @@
 package com.ramonmr95.tiky.olc.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ramonmr95.tiky.olc.dtos.ExamQuestionAnswerDto;
+import com.ramonmr95.tiky.olc.entities.Answer;
 import com.ramonmr95.tiky.olc.entities.Exam;
+import com.ramonmr95.tiky.olc.entities.Question;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
 import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
 import com.ramonmr95.tiky.olc.parsers.JsonParser;
@@ -91,6 +95,22 @@ public class ExamController {
 			@RequestParam Long subject_id) {
 		List<Exam> exams = this.examService.findAllExamByCourseIdAndSubjectId(course_id, subject_id);
 		return new ResponseEntity<>(exams, HttpStatus.OK);
+	}
+
+	@GetMapping("/questions/answers")
+	public ResponseEntity<?> getAllQuestionsAndAnswersByExamId(@RequestParam(name = "exam_id") Long examId) {
+		try {
+			List<ExamQuestionAnswerDto> exam = new ArrayList<>();
+			List<Question> questions = this.examService.findAllQuestionByExamId(examId);
+			for (Question question : questions) {
+				List<Answer> answers = this.examService.findAllAnswersGivenQuestionId(question.getId());
+				exam.add(new ExamQuestionAnswerDto(question.convertToDto(), answers));
+			}
+			return new ResponseEntity<>(exam, HttpStatus.OK);
+		} catch (DataNotFoundException e) {
+			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
+		}
+
 	}
 
 }

@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ramonmr95.tiky.olc.entities.Answer;
 import com.ramonmr95.tiky.olc.entities.Exam;
+import com.ramonmr95.tiky.olc.entities.Question;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
 import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
 import com.ramonmr95.tiky.olc.repositories.IExamDao;
@@ -53,7 +55,7 @@ public class ExamServiceImpl implements IExamService {
 
 		if (this.entityValidator.isEntityValid(exam)) {
 			updatedExam.setDate(exam.getDate());
-			updatedExam.setMark(exam.getMark());
+//			updatedExam.setMark(exam.getMark());
 			return this.examDao.save(updatedExam);
 		}
 		throw new EntityValidationException(this.entityValidator.getEntityValidationErrorsString(exam));
@@ -70,6 +72,19 @@ public class ExamServiceImpl implements IExamService {
 	@Override
 	public List<Exam> findAllExamByCourseIdAndSubjectId(Long course_id, Long subject_id) {
 		return this.examDao.findAllExamByCourseIdAndSubjectId(course_id, subject_id);
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public List<Answer> findAllAnswersGivenQuestionId(Long id) {
+		return this.examDao.findAllAnswersGivenQuestionId(id);
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public List<Question> findAllQuestionByExamId(Long id) throws DataNotFoundException {
+		this.findOne(id);
+		return this.examDao.findAllQuestionByExamId(id);
 	}
 
 }

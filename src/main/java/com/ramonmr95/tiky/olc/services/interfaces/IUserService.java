@@ -39,6 +39,8 @@ public interface IUserService {
 	public Map<Long, String> findMentorsByCourse() throws DataNotFoundException;
 	
 	public void enroll(Long userId, Long courseId) throws DataNotFoundException, UserAlreadyEnrolledException;
+	
+	public User updatePhoto(Long userId, String url) throws DataNotFoundException, EntityValidationException;
 
 
 }
