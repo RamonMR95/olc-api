@@ -33,7 +33,7 @@ public class UserExam implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	@NotNull(message = "The exam date is required")
-	@Column(nullable = false)
+	@Column(nullable = false,name = "date_success")
 	@JsonFormat(pattern = dateFormat)
 	private Date date;
 

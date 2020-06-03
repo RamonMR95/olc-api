@@ -17,7 +17,6 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "exams")
@@ -34,7 +33,6 @@ public class Exam implements Serializable {
 	@Column(nullable = false)
 	private String name;
 
-	@JsonIgnore
 	@OneToOne
 	private Subject subject;
 
@@ -45,7 +43,7 @@ public class Exam implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	@NotNull(message = "The exam date is required")
-	@Column(nullable = false)
+	@Column(nullable = false, name = "date_register")
 	@JsonFormat(pattern = dateFormat)
 	private Date date;
 
