@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ramonmr95.tiky.olc.entities.UserExam;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
 import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
+import com.ramonmr95.tiky.olc.exceptions.ExamAlreadyDoneByStudentException;
 import com.ramonmr95.tiky.olc.parsers.JsonParser;
 import com.ramonmr95.tiky.olc.services.interfaces.IUserExamService;
 
@@ -28,11 +29,12 @@ public class UserExamController {
 		try {
 			UserExam newUserExam = this.userExamService.submit(userExam);
 			return new ResponseEntity<>(newUserExam, HttpStatus.OK);
-		} catch (EntityValidationException e) {
+		} catch (EntityValidationException | ExamAlreadyDoneByStudentException e) {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.BAD_REQUEST);
 		} catch (DataNotFoundException e) {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
 		}
 
 	}
+
 }
