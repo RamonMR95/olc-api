@@ -36,19 +36,11 @@ INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07
 INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 5, 2, 1);
 INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 7, 3, 1);
 INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 9, 4, 1);
-INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 6, 1, 1);
-INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 7, 2, 1);
-INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 3, 3, 1);
-INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 5, 4, 1);
 
-INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 6, 5, 2);
-INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 8, 6, 2);
-INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 10, 7, 2);
 INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 9, 8, 2);
 INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 5, 5, 2);
 INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 4, 6, 2);
 INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 7, 7, 2);
-INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 6, 8, 2);
 
 INSERT INTO questions(name, exam_id) VALUES ("What is correct syntax for main method of a java class?", 1);
 INSERT INTO answers(answer, correct, question_id) VALUES ("A) public static int main(String[] args)", FALSE, 1);
