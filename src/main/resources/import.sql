@@ -180,5 +180,18 @@ INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content th
 INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme four", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 4);
 INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme four", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 4);
 
+INSERT INTO news (content, created_at, title, writer) VALUES ("Content1", "1992/05/07", "Title1", "Aenesidemus");
+INSERT INTO news (content, created_at, title, writer) VALUES ("Content2", "1992/05/07", "Title2", "Anaxilaus");
+INSERT INTO news (content, created_at, title, writer) VALUES ("Content3", "1992/05/07", "Title3", "Antoninus");
+INSERT INTO news (content, created_at, title, writer) VALUES ("Content4", "1992/05/07", "Title4", "Anniceris");
+INSERT INTO news (content, created_at, title, writer) VALUES ("Content5", "1992/05/07", "Title5", "Aristippus");
+INSERT INTO news (content, created_at, title, writer) VALUES ("Content6", "1992/05/07","Title6", "Aenesidemus");
+INSERT INTO news (content, created_at, title, writer) VALUES ("Content7", "1992/05/07", "Title7", "Anaxilaus");
+INSERT INTO news (content, created_at, title, writer) VALUES ("Content8", "1992/05/07","Title8", "Antoninus");
+INSERT INTO news (content, created_at, title, writer) VALUES ("Content9", "1992/05/07", "Title9", "Anniceris");
+INSERT INTO news (content, created_at, title, writer) VALUES ("Content10", "1992/05/07","Title10", "Aristippus");
+
+
+
 
 
