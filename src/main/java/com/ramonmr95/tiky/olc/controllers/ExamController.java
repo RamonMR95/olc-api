@@ -110,7 +110,18 @@ public class ExamController {
 		} catch (DataNotFoundException e) {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
 		}
-
+	}
+	
+	@GetMapping("/not-done")
+	public ResponseEntity<?> listAllExamsNotDoneByUserIdAndCourseId(@RequestParam(name = "user_id") Long userId,
+			@RequestParam(name = "course_id") Long courseId) {
+		try {
+			List<Exam> exams = this.examService.findAllExamsNotDoneByUserIdAndCourseId(userId, courseId);
+			
+			return new ResponseEntity<>(exams, HttpStatus.OK);
+		} catch (DataNotFoundException e) {
+			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
+		}	
 	}
 
 }
