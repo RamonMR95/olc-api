@@ -49,8 +49,8 @@ public class UserExamController {
 			}
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		} catch (DataNotFoundException e) {
-			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
 		}
 	}
-
+	
 }
