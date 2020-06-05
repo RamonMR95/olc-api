@@ -26,5 +26,6 @@ public interface IExamService {
 
 	public List<Question> findAllQuestionByExamId(Long id) throws DataNotFoundException;
 	
+	public List<Exam> findAllExamsNotDoneByUserIdAndCourseId(Long user_id, Long course_id) throws DataNotFoundException;
 
 }

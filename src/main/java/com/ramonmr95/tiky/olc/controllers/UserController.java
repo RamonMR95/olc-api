@@ -16,12 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ramonmr95.tiky.olc.entities.Course;
 import com.ramonmr95.tiky.olc.entities.Role;
 import com.ramonmr95.tiky.olc.entities.User;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
 import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
 import com.ramonmr95.tiky.olc.exceptions.UserAlreadyEnrolledException;
 import com.ramonmr95.tiky.olc.parsers.JsonParser;
+import com.ramonmr95.tiky.olc.services.EmailService;
+import com.ramonmr95.tiky.olc.services.interfaces.ICourseService;
 import com.ramonmr95.tiky.olc.services.interfaces.IUserService;
 
 @RestController
@@ -31,6 +34,12 @@ public class UserController {
 	@Autowired
 	private IUserService userServiceImpl;
 
+	@Autowired
+	private EmailService emailService;
+	
+	@Autowired
+	private ICourseService courseService;
+	
 	private JsonParser parser = new JsonParser();
 	
 	private static final String emailRegex = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\"
@@ -154,6 +163,15 @@ public class UserController {
 			@RequestParam(name = "course_id") Long courseId) {
 		try {
 			this.userServiceImpl.enroll(userId, courseId);
+			
+			User user = this.userServiceImpl.findOne(userId);
+			Course course = this.courseService.findOne(courseId);
+			
+			this.emailService.sendEmail(user.getEmail(),
+					String.format("Thanks for enrolling in course %s", course.getCourseName()),
+					String.format("Hello %s %s, %n%nYou have been enrolled to %s in %s to %s. %n%nGreetings, see you in.",
+							user.getName(), user.getSurName(), course.getCourseName(),course.getYearStart() ,course.getYearEnd()));
+			
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (DataNotFoundException e) {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);

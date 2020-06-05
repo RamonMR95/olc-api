@@ -12,7 +12,9 @@ import com.ramonmr95.tiky.olc.entities.Question;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
 import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
 import com.ramonmr95.tiky.olc.repositories.IExamDao;
+import com.ramonmr95.tiky.olc.services.interfaces.ICourseService;
 import com.ramonmr95.tiky.olc.services.interfaces.IExamService;
+import com.ramonmr95.tiky.olc.services.interfaces.IUserService;
 import com.ramonmr95.tiky.olc.validators.EntityValidator;
 
 @Service
@@ -20,6 +22,12 @@ public class ExamServiceImpl implements IExamService {
 
 	@Autowired
 	private IExamDao examDao;
+
+	@Autowired
+	private IUserService userService;
+
+	@Autowired
+	private ICourseService courseService;
 
 	private EntityValidator<Exam> entityValidator = new EntityValidator<>();
 
@@ -85,6 +93,15 @@ public class ExamServiceImpl implements IExamService {
 	public List<Question> findAllQuestionByExamId(Long id) throws DataNotFoundException {
 		this.findOne(id);
 		return this.examDao.findAllQuestionByExamId(id);
+	}
+
+	@Override
+	public List<Exam> findAllExamsNotDoneByUserIdAndCourseId(Long user_id, Long course_id)
+			throws DataNotFoundException {
+		this.userService.findOne(user_id);
+		this.courseService.findOne(course_id);
+		return this.examDao.findAllExamsNotDoneByUserIdAndCourseId(user_id, course_id);
+
 	}
 
 }
