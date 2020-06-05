@@ -20,27 +20,31 @@ INSERT INTO subjects (subject_name) VALUES ("AAD");
 
 INSERT INTO users (about, active, birth_date, email, name, password, photo, sur_name, address_id, course_id, mentor_id, role_id) VALUES ("", TRUE, "1995/03/15", "antonio507murcia@gmail.com", "Antonio", "$2a$10$VhrKZNJnTau5YdY2lyieMOLJLsEOQ1hun0j6PvgTuFY9T2vA.us7K", "", "Ruiz", 1, 1, 1, 1);
 INSERT INTO users (about, active, birth_date, email, name, password, photo, sur_name, address_id, course_id, mentor_id, role_id) VALUES ("", TRUE, "1970/05/07", "ramonmr16@gmail.com", "Ramon", "$2a$10$VhrKZNJnTau5YdY2lyieMOLJLsEOQ1hun0j6PvgTuFY9T2vA.us7K", "", "Moñino", 2, 2, 2, 1);
- 
+INSERT INTO users (about, active, birth_date, email, name, password, photo, sur_name, address_id, course_id, mentor_id, role_id) VALUES ("", TRUE, "1970/05/07", "roberto@gmail.com", "Roberto", "$2a$10$VhrKZNJnTau5YdY2lyieMOLJLsEOQ1hun0j6PvgTuFY9T2vA.us7K", "", "sabater", 2, 2, null, 3);
+
 
 INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/01/07", "Examen 1", 1, 1);
 INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/04/07", "Examen 2", 1, 2);
 INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/02/07", "Examen 3", 1, 3);
 INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/03/02", "Examen 4", 1, 4);
-
 INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/06/07", "Examen 5", 2, 1);
 INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/05/07", "Examen 6", 2, 2);
 INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/04/07", "Examen 7", 2, 3);
 INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/03/07", "Examen 8", 2, 4);
+INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/03/07", "Examen 9", 2, 1);
+INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/03/07", "Examen 10", 2, 2);
+INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/03/07", "Examen 11", 2, 3);
+INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/03/07", "Examen 12", 2, 4);
+
 
 INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 10, 1, 1);
 INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 5, 2, 1);
 INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 7, 3, 1);
-INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 9, 4, 1);
 
-INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 9, 8, 2);
 INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 5, 5, 2);
 INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 4, 6, 2);
 INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 7, 7, 2);
+
 
 INSERT INTO questions(name, exam_id) VALUES ("What is correct syntax for main method of a java class?", 1);
 INSERT INTO answers(answer, correct, question_id) VALUES ("A) public static int main(String[] args)", FALSE, 1);
