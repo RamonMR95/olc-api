@@ -108,7 +108,7 @@ public class CourseController {
 			}
 			return new ResponseEntity<>(
 					this.parser.parseToMap("errors", "The course with id: " + id + " does not have any subject."),
-					HttpStatus.NOT_FOUND);
+					HttpStatus.OK);
 		} catch (DataNotFoundException e) {
 			return new ResponseEntity<>(
 					this.parser.parseToMap("errors", "The course with id: " + id + " does not exist."),
