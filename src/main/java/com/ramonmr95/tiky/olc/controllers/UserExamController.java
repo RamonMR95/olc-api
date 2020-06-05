@@ -15,6 +15,7 @@ import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
 import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
 import com.ramonmr95.tiky.olc.exceptions.ExamAlreadyDoneByStudentException;
 import com.ramonmr95.tiky.olc.parsers.JsonParser;
+import com.ramonmr95.tiky.olc.services.EmailService;
 import com.ramonmr95.tiky.olc.services.interfaces.IUserExamService;
 
 @RestController
@@ -24,12 +25,21 @@ public class UserExamController {
 	@Autowired
 	private IUserExamService userExamService;
 
+	@Autowired
+	private EmailService emailService;
+
 	private JsonParser parser = new JsonParser();
 
 	@PostMapping
 	public ResponseEntity<?> submitExam(@RequestBody UserExam userExam) {
 		try {
 			UserExam newUserExam = this.userExamService.submit(userExam);
+
+			this.emailService.sendEmail(newUserExam.getUser().getEmail(),
+					String.format("This is your Mark in exam %s", newUserExam.getExam().getName()),
+					String.format("Hello %s, %n%nThe mark in exam %s is %.2f. %n%nGreetings.",
+							newUserExam.getUser().getName(), newUserExam.getExam().getName(), newUserExam.getMark()));
+
 			return new ResponseEntity<>(newUserExam, HttpStatus.OK);
 		} catch (EntityValidationException | ExamAlreadyDoneByStudentException e) {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.BAD_REQUEST);
@@ -52,5 +62,5 @@ public class UserExamController {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 }
