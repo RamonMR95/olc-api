@@ -10,6 +10,7 @@ import com.ramonmr95.tiky.olc.entities.UserExam;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
 import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
 import com.ramonmr95.tiky.olc.exceptions.ExamAlreadyDoneByStudentException;
+import com.ramonmr95.tiky.olc.exceptions.TeacherExamSubmitException;
 import com.ramonmr95.tiky.olc.repositories.IUserExamDao;
 import com.ramonmr95.tiky.olc.services.interfaces.IExamService;
 import com.ramonmr95.tiky.olc.services.interfaces.IUserExamService;
@@ -34,12 +35,18 @@ public class UserExamServiceImpl implements IUserExamService {
 	@Transactional
 	@Override
 	public UserExam submit(UserExam userExam)
-			throws EntityValidationException, DataNotFoundException, ExamAlreadyDoneByStudentException {
+			throws EntityValidationException, DataNotFoundException, ExamAlreadyDoneByStudentException, TeacherExamSubmitException {
 		if (userExam.getExam() == null)
 			throw new EntityValidationException("Exam is required");
 
 		if (userExam.getUser() == null) {
 			throw new EntityValidationException("User is required");
+		}
+		
+		User user = this.userService.findOne(userExam.getUser().getId());
+		
+		if (user.getRole().getName().equals("Teacher")) {
+			throw new TeacherExamSubmitException("A teacher cannot submit the exam");
 		}
 
 		if (this.findExamByUserId(userExam.getUser().getId(), userExam.getExam().getId()) != null) {
@@ -47,7 +54,6 @@ public class UserExamServiceImpl implements IUserExamService {
 					+ " was done already done by student with id : " + userExam.getUser().getId());
 		}
 
-		User user = this.userService.findOne(userExam.getUser().getId());
 		Exam exam = this.examService.findOne(userExam.getExam().getId());
 		userExam.setExam(exam);
 		userExam.setUser(user);

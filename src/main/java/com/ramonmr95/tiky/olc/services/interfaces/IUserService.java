@@ -27,20 +27,21 @@ public interface IUserService {
 	public List<User> findAllUsersPerCourse(Long course_id);
 
 	public User findByEmailAndPassword(String email, String password);
-	
+
 	public User findByEmail(String email);
 
 	public Role findRoleByUserId(Long id) throws DataNotFoundException;
 
 	public User findMentorByCourseId(Long courseId) throws DataNotFoundException;
-	
+
 	public User findMentorById(Long id) throws DataNotFoundException;
-	
+
 	public Map<Long, String> findMentorsByCourse() throws DataNotFoundException;
-	
+
 	public void enroll(Long userId, Long courseId) throws DataNotFoundException, UserAlreadyEnrolledException;
-	
+
 	public User updatePhoto(Long userId, String url) throws DataNotFoundException, EntityValidationException;
 
+	public List<User> findUsersGivenMentorId(Long id);
 
 }

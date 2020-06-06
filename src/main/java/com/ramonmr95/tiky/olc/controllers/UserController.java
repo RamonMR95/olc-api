@@ -36,12 +36,12 @@ public class UserController {
 
 	@Autowired
 	private EmailService emailService;
-	
+
 	@Autowired
 	private ICourseService courseService;
-	
+
 	private JsonParser parser = new JsonParser();
-	
+
 	private static final String emailRegex = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\"
 			+ "x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9]"
 			+ "(?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
@@ -145,7 +145,6 @@ public class UserController {
 		}
 	}
 
-
 	@GetMapping("/email")
 	public ResponseEntity<?> findUserByEmail(@RequestParam String email) {
 		if (!email.matches(emailRegex)) {
@@ -163,15 +162,17 @@ public class UserController {
 			@RequestParam(name = "course_id") Long courseId) {
 		try {
 			this.userServiceImpl.enroll(userId, courseId);
-			
+
 			User user = this.userServiceImpl.findOne(userId);
 			Course course = this.courseService.findOne(courseId);
-			
+
 			this.emailService.sendEmail(user.getEmail(),
 					String.format("Thanks for enrolling in course %s", course.getCourseName()),
-					String.format("Hello %s %s, %n%nYou have been enrolled to %s in %s to %s. %n%nGreetings, see you in.",
-							user.getName(), user.getSurName(), course.getCourseName(),course.getYearStart() ,course.getYearEnd()));
-			
+					String.format(
+							"Hello %s %s, %n%nYou have been enrolled to %s in %s to %s. %n%nGreetings, see you in.",
+							user.getName(), user.getSurName(), course.getCourseName(), course.getYearStart(),
+							course.getYearEnd()));
+
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (DataNotFoundException e) {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
@@ -179,7 +180,7 @@ public class UserController {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 	@GetMapping("/photo")
 	public ResponseEntity<?> updatePhoto(@RequestParam(name = "user_id") Long userId, @RequestParam String url) {
 		try {
@@ -190,6 +191,12 @@ public class UserController {
 		} catch (EntityValidationException e) {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.BAD_REQUEST);
 		}
+	}
+
+	@GetMapping("/students")
+	public ResponseEntity<?> findUsersGivenMentorId(@RequestParam(name = "mentor_id") Long mentorId) {
+		List<User> students = this.userServiceImpl.findUsersGivenMentorId(mentorId);
+		return new ResponseEntity<>(students, HttpStatus.OK);
 	}
 
 }
