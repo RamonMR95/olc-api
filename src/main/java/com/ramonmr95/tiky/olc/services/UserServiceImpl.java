@@ -28,7 +28,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private ICourseService courseService;
-	
+
 	private EntityValidator<User> entityValidator = new EntityValidator<>();
 
 	@Autowired
@@ -95,9 +95,9 @@ public class UserServiceImpl implements IUserService {
 		Map<String, Double> marksMap = new HashMap<>();
 		List<Object[]> marksList = this.userDao.findMarkAndSubjectsByStudentIdAndYearStart(id, year);
 		marksList.forEach(mark -> {
-			
+
 			if (marksMap.containsKey(mark[1])) {
-				marksMap.put((String) mark[1], (marksMap.get(mark[1]) + (Double) mark[0]) / 2 );
+				marksMap.put((String) mark[1], (marksMap.get(mark[1]) + (Double) mark[0]) / 2);
 			} else {
 				marksMap.put((String) mark[1], (Double) mark[0]);
 			}
@@ -144,7 +144,7 @@ public class UserServiceImpl implements IUserService {
 	@Transactional(readOnly = true)
 	@Override
 	public User findMentorById(Long id) throws DataNotFoundException {
-		User user =  this.userDao.findMentorById(id);
+		User user = this.userDao.findMentorById(id);
 		if (user != null) {
 			return user;
 		}
@@ -155,12 +155,12 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public Map<Long, String> findMentorsByCourse() throws DataNotFoundException {
 		List<Course> courses = this.courseService.findAll();
-		
+
 		Map<Long, String> data = new HashMap<>();
 
 		for (Course course : courses) {
 			User usr = this.findMentorById(course.getId());
-			if (usr != null)  {
+			if (usr != null) {
 				data.put(course.getId(), usr.getName());
 			} else {
 				data.put(course.getId(), "");
@@ -177,7 +177,8 @@ public class UserServiceImpl implements IUserService {
 			Course course = this.courseService.findOne(courseId);
 			user.setCourse(course);
 		} else {
-			throw new UserAlreadyEnrolledException("User with id: " + userId + " is already enrolled to course with id: " + courseId);
+			throw new UserAlreadyEnrolledException(
+					"User with id: " + userId + " is already enrolled to course with id: " + courseId);
 		}
 
 	}
@@ -191,6 +192,12 @@ public class UserServiceImpl implements IUserService {
 			return user;
 		}
 		throw new EntityValidationException("The photo url is required");
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public List<User> findUsersGivenMentorId(Long id) {
+		return this.userDao.findUsersGivenMentorId(id);
 	}
 
 }

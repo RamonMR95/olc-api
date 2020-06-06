@@ -39,5 +39,8 @@ public interface IUserDao extends CrudRepository<User, Long> {
 	
 	@Query(nativeQuery = true, value = "SELECT * FROM users u WHERE u.mentor_id = ?1")
 	public User findMentorById(Long id);
-		
+	
+	@Query("SELECT u FROM User u WHERE u.course.id = ?1 AND u.role.name = 'Student' OR u.role.name = 'Teacher'")
+	public List<User> findUsersGivenMentorId(Long id);
+	
 }
