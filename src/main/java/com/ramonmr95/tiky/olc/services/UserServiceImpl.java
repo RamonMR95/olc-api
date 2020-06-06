@@ -173,8 +173,8 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public void enroll(Long userId, Long courseId) throws DataNotFoundException, UserAlreadyEnrolledException {
 		User user = this.findOne(userId);
-		if (user.getCourse().getId() != courseId) {
-			Course course = this.courseService.findOne(courseId);
+		Course course = this.courseService.findOne(courseId);
+		if (user.getCourse().getId() != courseId && user.getCourse().getYearEnd().before(course.getYearEnd())) {
 			user.setCourse(course);
 		} else {
 			throw new UserAlreadyEnrolledException(
