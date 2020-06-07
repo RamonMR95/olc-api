@@ -186,114 +186,85 @@ INSERT INTO answers(answer, correct, question_id) VALUES ("B) Main application r
 INSERT INTO answers(answer, correct, question_id) VALUES ("C) start() method of the thread class.", FALSE, 5);
 INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 5);
 
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme one", "Theme 1 - Name Theme" , 1);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme two", "Theme 2 - Name Theme" , 1);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme three", "Theme 3 - Name Theme" , 1);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme four", "Theme 4 - Name Theme" , 1);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme five", "Theme 5 - Name Theme" , 1);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme six", "Theme 6 - Name Theme" , 1);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme seven", "Theme 7 - Name Theme" , 1);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme eight", "Theme 8 - Name Theme" , 1);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme nine", "Theme 9 - Name Theme" , 1);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme ten", "Theme 10 - Name Theme" , 1);
+-- PSP Themes
+INSERT INTO topics (description, name, subject_id) VALUES ("The execution of a process implies that the same at the moment of execution uses the entire processor and with the allocated memory space. In multitasking systems, processes alternate, and when one frees the processor so that another can run, it also frees the allocated memory.", "UT 1. Multithreaded and multithreaded programming" , 1);
+INSERT INTO topics (description, name, subject_id) VALUES ("For connection-oriented communications, communication parties usually have different roles. One party is usually waiting for incoming connections; this party is usually referred to as server. Another party is the one which initiates connection; this party is usually referred to as client", "UT 2. Network communication programming" , 1);
+INSERT INTO topics (description, name, subject_id) VALUES ("In computer networking, a network service is an application running at the network application layer and above, that provides data storage, manipulation, presentation, communication or other capability which is often implemented using a client-server or peer-to-peer architecture based on application layer network protocols.", "UT 3. Programming of network services" , 1);
+INSERT INTO topics (description, name, subject_id) VALUES ("Secure coding is the practice of developing computer software in a way that guards against the accidental introduction of security vulnerabilities. Defects, bugs and logic flaws are consistently the primary cause of commonly exploited software vulnerabilities.", "UT 4. Secure programming in java" , 1);
 
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme one", "Theme 1 - Name Theme" , 2);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme two", "Theme 2 - Name Theme" , 2);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme three", "Theme 3 - Name Theme" , 2);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme four", "Theme 4 - Name Theme" , 2);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme five", "Theme 5 - Name Theme" , 2);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme six", "Theme 6 - Name Theme" , 2);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme seven", "Theme 7 - Name Theme" , 2);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme eight", "Theme 8 - Name Theme" , 2);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme nine", "Theme 9 - Name Theme" , 2);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme ten", "Theme 10 - Name Theme" , 2);
+-- SGE Themes
+INSERT INTO topics (description, name, subject_id) VALUES ("Enterprise resource planning (ERP) is the integrated management of main business processes, often in real time and mediated by software and technology.", "UT 1. Identification of ERP-CRM systems" , 2);
+INSERT INTO topics (description, name, subject_id) VALUES ("Configuration is the process of changing your ERP system's components so that they function properly within in your environment and business situations, such as time zones, languages, currencies, and platforms.", "UT 2. Installation and configuration of ERP-CRM systems" , 2);
+INSERT INTO topics (description, name, subject_id) VALUES ("Where CRM manages the customer, ERP is used to manage the business. ERP is a system for improving the efficiency of business processes. Like CRM, ERP allows for the rapid sharing of standardised information throughout all departments.", "UT 3. Use of the ERP-CRM System" , 2);
+INSERT INTO topics (description, name, subject_id) VALUES ("Introduction A programming language is a notational system for describing computation in a machine-readable and human-readable form. A programming language is a tool for developing executable models for a class of problem domains.", "UT 4. Introduction to the programming language" , 2);
 
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme one", "Theme 1 - Name Theme" , 3);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme two", "Theme 2 - Name Theme" , 3);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme three", "Theme 3 - Name Theme" , 3);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme four", "Theme 4 - Name Theme" , 3);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme five", "Theme 5 - Name Theme" , 3);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme six", "Theme 6 - Name Theme" , 3);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme seven", "Theme 7 - Name Theme" , 3);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme eight", "Theme 8 - Name Theme" , 3);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme nine", "Theme 9 - Name Theme" , 3);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme ten", "Theme 10 - Name Theme" , 3);
+-- DI Themes
+INSERT INTO topics (description, name, subject_id) VALUES ("Visual Basic is a user-friendly programming language designed for beginners, and it enables anyone to develop GUI window applications easily.", "UT 1. Visual Basic Introduction" , 3);
+INSERT INTO topics (description, name, subject_id) VALUES ("A language is a structured system of communication. Language, in a broader sense, is the ... Formal theories of grammar seek to define the different elements of language and describe the way they relate to ... In these types of languages, a single verb may include information that would require an entire sentence in English.", "UT 2. Language Elements" , 3);
+INSERT INTO topics (description, name, subject_id) VALUES ("A for-loop has two parts: a header specifying the iteration, and a body which is executed once per iteration. The header often declares an explicit loop counter or loop variable, which allows the body to know which iteration is being executed. For-loops are typically used when the number of iterations is known before entering the loop. For-loops can be thought of as shorthands for while-loops which increment and test a loop variable.", "UT 3. Loops and decision structures" , 3);
+INSERT INTO topics (description, name, subject_id) VALUES ("Visual Basic .NET (VB.NET) is a multi-paradigm, object-oriented programming language, implemented on the .NET Framework. Microsoft launched VB.NET in 2002 as the successor to its original Visual Basic language. Although the .NET portion of the name was dropped in 2005, this article uses Visual Basic [.NET] to refer to all Visual Basic languages released since 2002, in order to distinguish between them and the classic Visual Basic. Along with Visual C#, it is one of the two main languages targeting the .NET framework.", "UT 4. Windows Forms" , 3);
 
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme one", "Theme 1 - Name Theme" , 4);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme two", "Theme 2 - Name Theme" , 4);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme three", "Theme 3 - Name Theme" , 4);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme four", "Theme 4 - Name Theme" , 4);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme five", "Theme 5 - Name Theme" , 4);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme six", "Theme 6 - Name Theme" , 4);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme seven", "Theme 7 - Name Theme" , 4);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme eight", "Theme 8 - Name Theme" , 4);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme nine", "Theme 9 - Name Theme" , 4);
-INSERT INTO topics (description, name, subject_id) VALUES ("Description theme ten", "Theme 10 - Name Theme" , 4);
+-- AAD Themes
+INSERT INTO topics (description, name, subject_id) VALUES ("In computing and computer programming, exception handling is the process of responding to the occurrence of exceptions – anomalous or exceptional conditions requiring special processing - during the execution of a program. In general, an exception breaks the normal flow of execution and executes a pre-registered exception handler; the details of how this is done depend on whether it is a hardware or software exception and how the software exception is implemented. It is provided by specialized programming language constructs, hardware mechanisms like interrupts, or operating system (OS) inter-process communication (IPC) facilities like signals. Some exceptions, especially hardware ones, may be handled so gracefully that execution can resume where it was interrupted.", "UT 1. File handling and exception management" , 4);
+INSERT INTO topics (description, name, subject_id) VALUES ("A database management system (DBMS) is a computer program (or more typically, a suite of them) designed to manage a database, a large set of structured data, and run operations on the data requested by numerous users. Typical examples of DBMS use include accounting, human resources and customer support systems.", "UT 2. Management of connectors to DBMS" , 4);
+INSERT INTO topics (description, name, subject_id) VALUES ("Hibernate ORM (or simply Hibernate) is an object-relational mapping tool for the Java programming language. It provides a framework for mapping an object-oriented domain model to a relational database. ... It generates SQL calls and relieves the developer from the manual handling and object conversion of the result set.", "UT 3. Hibernate configuration" , 4);
+INSERT INTO topics (description, name, subject_id) VALUES ("An XML database is a data persistence software system that allows data to be specified, and sometimes stored, in XML format. This data can be queried, transformed, exported and returned to a calling system. XML databases are a flavor of document-oriented databases which are in turn a category of NoSQL database. ", "UT 4. XML Database" , 4);
 
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme one", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 1);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme one", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 1);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme one", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 1);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme one", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 1);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme one", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 1);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme one", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 1);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme one", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 1);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme one", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 1);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme one", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 1);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme one", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 1);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme one", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 1);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme one", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 1);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme one", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 1);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme one", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 1);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme one", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 1);
+-- PSP Topic-content
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Process characteristics", "https://en.wikipedia.org/wiki/Process_(computing)", 1);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Scheduling (computing)", "https://en.wikipedia.org/wiki/Scheduling_(computing)", 1);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Processes and threads in Windows", "https://www.tenouk.com/ModuleT.html", 1);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Process management in Linux/GNU)", "https://www.tecmint.com/linux-process-management/", 1);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Network protocols and communications", "https://moodle.iescierva.net/pluginfile.php/74769/mod_resource/content/1/UT2.1.Protocolos%20y%20comunicaciones%20en%20red.pdf", 2);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Network access", "https://moodle.iescierva.net/pluginfile.php/74770/mod_resource/content/1/UT2.2.Acceso%20a%20la%20red.pdf", 2);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Network layer", "https://moodle.iescierva.net/pluginfile.php/74771/mod_resource/content/1/UT2.3.Capa%20de%20Red.pdf", 2);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("IPV4 and IPV6", "https://moodle.iescierva.net/pluginfile.php/74772/mod_resource/content/1/UT2.4.IPv4_IPv6.pdf", 2);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Network services", "https://moodle.iescierva.net/pluginfile.php/89029/mod_resource/content/2/UT3.1.%20Servicios%20en%20Red%20v1.pdf", 3);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Secure programming", "https://moodle.iescierva.net/pluginfile.php/89544/mod_resource/content/1/UT4.1.Programaci%C3%B3n%20Segura%20%20v1.pdf", 4);
 
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme two", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 2);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme two", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 2);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme two", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 2);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme two", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 2);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme two", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 2);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme two", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 2);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme two", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 2);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme two", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 2);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme two", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 2);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme two", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 2);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme two", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 2);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme two", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 2);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme two", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 2);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme two", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 2);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme two", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 2);
+-- SGE Topic-content
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Computer System Book", "https://moodle.iescierva.net/pluginfile.php/54575/mod_resource/content/0/SGE%20Tema%201.%20SI%20Libro.pdf", 5);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Colebrook", "https://moodle.iescierva.net/pluginfile.php/54557/mod_resource/content/0/SGE_Marcos_Colebrook.pdf", 5);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Bizagi Manual", "http://download.bizagi.com/docs/modeler/3100/es/Modeler_manual_del_usuario.pdf", 5);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Bizagi Process Modeler (BPM) - Software", "https://www.bizagi.com/en/platform/modeler", 5);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Software Licenses", "https://en.wikipedia.org/wiki/Software_license", 6);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Types of License", "https://moodle.iescierva.net/pluginfile.php/60944/mod_resource/content/1/ISO-2%20Tipos%20de%20licencias.pdf", 6);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Free software, open source software and licenses", "https://www.taringa.net/+linux/software-libre-software-de-codigo-abierto-y-licencias_12y2fd", 6);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Download link Open-ERP - (Odoo)", "https://www.odoo.com/", 6);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Odoo Documentation (RTFM)", "https://www.odoo.com/documentation/user/13.0/index.html", 7);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Introduction to programming - Python", "https://moodle.iescierva.net/pluginfile.php/58046/mod_resource/content/0/01.IntrodProg.pdf", 8);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Tools", "https://moodle.iescierva.net/pluginfile.php/58047/mod_resource/content/0/02.Herramientas.pdf", 8);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Python programming", "https://moodle.iescierva.net/pluginfile.php/58048/mod_resource/content/0/03.ProgPython.pdf", 8);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Type of data", "https://moodle.iescierva.net/pluginfile.php/58049/mod_resource/content/0/04.TiposDeDatos.pdf", 8);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Loop conditions", "https://moodle.iescierva.net/pluginfile.php/58050/mod_resource/content/0/05.CondicionesBucles.pdf", 8);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Python functions", "https://moodle.iescierva.net/pluginfile.php/62233/mod_resource/content/0/Python-funciones.pdf", 8);
 
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme three", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 3);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme three", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 3);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme three", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 3);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme three", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 3);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme three", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 3);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme three", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 3);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme three", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 3);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme three", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 3);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme three", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 3);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme three", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 3);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme three", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 3);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme three", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 3);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme three", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 3);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme three", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 3);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme three", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 3);
+-- DI Topic-content
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Introduction to Visual Studio .NET", "https://moodle.iescierva.net/pluginfile.php/27421/mod_resource/content/1/1IntroduccionNet.pdf", 9);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Elements of language. Variables and data structures", "https://moodle.iescierva.net/pluginfile.php/27422/mod_resource/content/1/2ElementosLeng.pdf", 10);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Loops and decision structures", "https://moodle.iescierva.net/pluginfile.php/27474/mod_resource/content/2/3.-Buclesyestructurasdedecision.pdf", 11);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Introduction to Windows Forms", "https://moodle.iescierva.net/pluginfile.php/27752/mod_resource/content/3/4.-WindowsForms.pdf-", 12);
 
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme four", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 4);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme four", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 4);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme four", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 4);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme four", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 4);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme four", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 4);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme four", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 4);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme four", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 4);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme four", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 4);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme four", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 4);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme four", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 4);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme four", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 4);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme four", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 4);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme four", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 4);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme four", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 4);
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Name for content theme four", "https://www.fdi.ucm.es/profesor/jpavon/web/41-J2EE.pdf", 4);
+-- AAD Topic-content
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("The best tutorial about Java I/O", "https://docs.oracle.com/javase/tutorial/essential/io/index.html", 13);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Basic file handling in Java", "https://moodle.iescierva.net/pluginfile.php/71185/mod_resource/content/2/Manejo.basico.de.archivos.en.java.pdf", 13);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Advanced File handling in Java", "https://moodle.iescierva.net/pluginfile.php/71186/mod_resource/content/1/Manejo_de_Ficheros_en_JAVA_fpr1009.pdf", 13);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Recursion plus Array arrangement", "https://moodle.iescierva.net/pluginfile.php/72923/mod_resource/content/2/Recursividad.pdf", 13);
 
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Wikipedia's E/R Model", "https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model", 14);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Manual on-line de sqlite (English)", "http://zetcode.com/db/sqlite/", 14);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Metadatos in BBDDD", "https://docs.microsoft.com/es-es/sql/connect/jdbc/reference/gettables-method-sqlserverdatabasemetadata?view=sql-server-2017", 14);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("DB4O Tutorial", "https://moodle.iescierva.net/pluginfile.php/75767/mod_resource/content/1/db4o-7.8-tutorial.pdf", 14);
+
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("HQL Update, delete and Insert", "https://moodle.iescierva.net/pluginfile.php/77364/mod_resource/content/1/HQL_Update_Delete_Insert_AaD_G.pdf", 15);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Manual Hibernate", "https://moodle.iescierva.net/pluginfile.php/73654/mod_resource/content/1/ManualHibernate.pdf", 15);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Hibernate's eclipse plugin", "https://download.jboss.org/jbosstools/photon/stable/updates/", 15);
+
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Getting started with Exist DB", "https://www.solvetic.com/tutoriales/article/1521-primeros-pasos-con-existdb/", 16);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("XPath: XML Path language", "https://www.mclibre.org/consultar/xml/lecciones/xml-xpath.html", 16);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Xquery", "http://www.requena.es/sites/default/files/ES_XQuery.pdf", 16);
+
+-- New content
 INSERT INTO news (content, created_at, title, writer) VALUES ("Content1", "1992/05/07", "Title1", "Aenesidemus");
 INSERT INTO news (content, created_at, title, writer) VALUES ("Content2", "1992/05/07", "Title2", "Anaxilaus");
 INSERT INTO news (content, created_at, title, writer) VALUES ("Content3", "1992/05/07", "Title3", "Antoninus");
