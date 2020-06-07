@@ -20,7 +20,7 @@ public interface IExamDao extends CrudRepository<Exam, Long> {
 	@Query("SELECT q FROM Question q WHERE q.exam.id = ?1")
 	public List<Question> findAllQuestionByExamId(Long id);
 	
-	@Query(nativeQuery = true, value = "SELECT * FROM exams WHERE id NOT IN (SELECT exam_id FROM user_exams WHERE user_id = ?1) AND course_id = ?2")
+	@Query(nativeQuery = true, value = "SELECT * FROM exams e WHERE id NOT IN (SELECT exam_id FROM user_exams WHERE user_id = ?1) AND course_id = ?2 AND e.visible = 1 AND e.date_register >= CURRENT_DATE")
 	public List<Exam> findAllExamsNotDoneByUserIdAndCourseId(Long user_id, Long course_id);
-
+	
 }
