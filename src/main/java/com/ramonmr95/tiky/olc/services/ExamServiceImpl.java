@@ -95,6 +95,7 @@ public class ExamServiceImpl implements IExamService {
 		return this.examDao.findAllQuestionByExamId(id);
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public List<Exam> findAllExamsNotDoneByUserIdAndCourseId(Long user_id, Long course_id)
 			throws DataNotFoundException {

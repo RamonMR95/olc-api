@@ -101,7 +101,7 @@ INSERT INTO users (about, active, birth_date, email, name, password, photo, sur_
 INSERT INTO users (about, active, birth_date, email, name, password, photo, sur_name, address_id, course_id, mentor_id, role_id) VALUES (null, TRUE, "1991/05/07", "jorge@gmail.com", "Jorge", "$2a$10$VhrKZNJnTau5YdY2lyieMOLJLsEOQ1hun0j6PvgTuFY9T2vA.us7K", null, "Alcon", 22, 2, null, 3);
 INSERT INTO users (about, active, birth_date, email, name, password, photo, sur_name, address_id, course_id, mentor_id, role_id) VALUES (null, TRUE, "1991/05/07", "david@gmail.com", "David", "$2a$10$VhrKZNJnTau5YdY2lyieMOLJLsEOQ1hun0j6PvgTuFY9T2vA.us7K", null, "Padilla", 23, 2, null, 3);
 INSERT INTO users (about, active, birth_date, email, name, password, photo, sur_name, address_id, course_id, mentor_id, role_id) VALUES (null, TRUE, "1991/05/07", "alfonso@gmail.com", "Alfonso", "$2a$10$VhrKZNJnTau5YdY2lyieMOLJLsEOQ1hun0j6PvgTuFY9T2vA.us7K", null, "Rama", 24, 2, null, 3);
-INSERT INTO users (about, active, birth_date, email, name, password, photo, sur_name, address_id, course_id, mentor_id, role_id) VALUES (null, TRUE, "1991/05/07", "roberto@gmail.com", "Roberto", "$2a$10$VhrKZNJnTau5YdY2lyieMOLJLsEOQ1hun0j6PvgTuFY9T2vA.us7K", null, "Escribano", 25, 2, null, 3);
+INSERT INTO users (about, active, birth_date, email, name, password, photo, sur_name, address_id, course_id, mentor_id, role_id) VALUES (null, TRUE, "1991/05/07", "robertoes@gmail.com", "Roberto", "$2a$10$VhrKZNJnTau5YdY2lyieMOLJLsEOQ1hun0j6PvgTuFY9T2vA.us7K", null, "Escribano", 25, 2, null, 3);
 INSERT INTO users (about, active, birth_date, email, name, password, photo, sur_name, address_id, course_id, mentor_id, role_id) VALUES (null, TRUE, "1991/05/07", "josep@gmail.com", "Josep", "$2a$10$VhrKZNJnTau5YdY2lyieMOLJLsEOQ1hun0j6PvgTuFY9T2vA.us7K", null, "Ordoñez", 26, 2, null, 3);
 INSERT INTO users (about, active, birth_date, email, name, password, photo, sur_name, address_id, course_id, mentor_id, role_id) VALUES (null, TRUE, "1991/05/07", "joseangel@gmail.com", "Jose Angel", "$2a$10$VhrKZNJnTau5YdY2lyieMOLJLsEOQ1hun0j6PvgTuFY9T2vA.us7K", null, "Cueva", 27, 2, null, 3);
 INSERT INTO users (about, active, birth_date, email, name, password, photo, sur_name, address_id, course_id, mentor_id, role_id) VALUES (null, TRUE, "1991/05/07", "jose@gmail.com", "Jose", "$2a$10$VhrKZNJnTau5YdY2lyieMOLJLsEOQ1hun0j6PvgTuFY9T2vA.us7K", null, "Sacristán", 28, 2, null, 3);
@@ -133,18 +133,18 @@ INSERT INTO users (about, active, birth_date, email, name, password, photo, sur_
 
 
 
-INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/01/07", "Examen 1", 1, 1);
-INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/04/07", "Examen 2", 1, 2);
-INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/02/07", "Examen 3", 1, 3);
-INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/03/02", "Examen 4", 1, 4);
-INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/06/07", "Examen 5", 2, 1);
-INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/05/07", "Examen 6", 2, 2);
-INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/04/07", "Examen 7", 2, 3);
-INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/03/07", "Examen 8", 2, 4);
-INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/03/07", "Examen 9", 2, 1);
-INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/03/07", "Examen 10", 2, 2);
-INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/03/07", "Examen 11", 2, 3);
-INSERT INTO exams(date_register, name, course_id, subject_id) VALUES ("1992/03/07", "Examen 12", 2, 4);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/10/20", "Examen 1", true, 1, 1);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/06/19", "Examen 2", true, 1, 2);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/06/21", "Examen 3", true, 1, 3);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("1992/03/02", "Examen 4", true, 1, 4);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("1992/06/07", "Examen 5", true, 2, 1);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("1992/05/07", "Examen 6", true, 2, 2);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("1992/04/07", "Examen 7", true, 2, 3);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("1992/03/07", "Examen 8", true, 2, 4);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/06/20", "Examen 9", true, 2, 1);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/06/15", "Examen 10", true, 2, 2);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/06/16", "Examen 11", true, 2, 3);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2021/03/07", "Examen 12", true, 2, 4);
 
 
 INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 10, 1, 1);
