@@ -44,7 +44,7 @@ public class User implements Serializable {
 	@JoinColumn(name = "role_id", nullable = false)
 	private Role role;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, optional = true)
 	@JoinColumn(name = "course_id", nullable = true)
 	private Course course;
 
