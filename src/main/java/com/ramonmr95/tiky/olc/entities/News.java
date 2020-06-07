@@ -37,7 +37,7 @@ public class News implements Serializable {
 	private String writer;
 
 	@Column(name = "created_at")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
 
 	@PrePersist
