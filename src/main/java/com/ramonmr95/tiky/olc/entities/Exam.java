@@ -28,7 +28,7 @@ public class Exam implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull(message = "The name is required")
 	@Column(nullable = false)
 	private String name;
@@ -46,6 +46,9 @@ public class Exam implements Serializable {
 	@Column(nullable = false, name = "date_register")
 	@JsonFormat(pattern = dateFormat)
 	private Date date;
+
+	@Column(nullable = false)
+	private boolean visible = true;
 
 	public Long getId() {
 		return id;
@@ -86,5 +89,13 @@ public class Exam implements Serializable {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
+
+	public boolean isVisible() {
+		return visible;
+	}
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
+
 }
