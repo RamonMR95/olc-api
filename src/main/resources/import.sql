@@ -265,7 +265,7 @@ INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.
 
 INSERT INTO questions(name, exam_id) VALUES ("Method used to cast to an Integer", 4);
 INSERT INTO answers(answer, correct, question_id) VALUES ("A) CINT", TRUE, 18);
-INSERT INTO answers(answer, correct, question_id) VALUES ("B) CINTEGER", TRUE, 18);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) CINTEGER", FALSE, 18);
 INSERT INTO answers(answer, correct, question_id) VALUES ("C) CI", FALSE, 18);
 INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 18);
 
