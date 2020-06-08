@@ -429,7 +429,7 @@ INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Loop conditions", "
 INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Python functions", "https://moodle.iescierva.net/pluginfile.php/62233/mod_resource/content/0/Python-funciones.pdf", 8);
 
 -- DI Topic-content
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Introduction to Visual Studio .NET", "https://firebasestorage.googleapis.com/v0/b/olc-imgs.appspot.com/o/pdfs%2Fdi%2Fut1%2F1IntroduccionNet.pdf?alt=media&token=34b8bc9b-1d96-4b1a-9281-354115cc3694", 9);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Introduction to Visual Studio .NET", "https://firebasestorage.googleapis.com/v0/b/olc-imgs.appspot.com/o/pdfs%2Fdi%2Fut1%2F1IntroduccionNet.pdf?alt=media", 9);
 INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Elements of language. Variables and data structures", "https://moodle.iescierva.net/pluginfile.php/27422/mod_resource/content/1/2ElementosLeng.pdf", 10);
 INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Loops and decision structures", "https://moodle.iescierva.net/pluginfile.php/27474/mod_resource/content/2/3.-Buclesyestructurasdedecision.pdf", 11);
 INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Introduction to Windows Forms", "https://moodle.iescierva.net/pluginfile.php/27752/mod_resource/content/3/4.-WindowsForms.pdf-", 12);
