@@ -62,8 +62,6 @@ INSERT INTO roles (name) VALUES ("Anonymous");
 
 INSERT INTO courses (course_name, photo, schedule, year_start, year_end) VALUES("DAM", null, "morning", "1992/09/07", "1993/06/08");
 INSERT INTO courses (course_name, photo, schedule, year_start, year_end) VALUES("DAM", null, "afternoon", "1993/09/07", "1994/06/08");
-INSERT INTO courses (course_name, photo, schedule, year_start, year_end) VALUES("DAW", null, "morning", "1992/09/07", "1993/06/08");
-INSERT INTO courses (course_name, photo, schedule, year_start, year_end) VALUES("DAW", null, "afternoon", "1993/09/07", "1994/06/08");
 
 
 INSERT INTO subjects (subject_name) VALUES ("PSP");
@@ -133,29 +131,33 @@ INSERT INTO users (about, active, birth_date, email, name, password, photo, sur_
 
 
 
-INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/10/20", "Examen 1", true, 1, 1);
-INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/06/19", "Examen 2", true, 1, 2);
-INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/06/21", "Examen 3", true, 1, 3);
-INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("1992/03/02", "Examen 4", true, 1, 4);
-INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("1992/06/07", "Examen 5", true, 2, 1);
-INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("1992/05/07", "Examen 6", true, 2, 2);
-INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("1992/04/07", "Examen 7", true, 2, 3);
-INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("1992/03/07", "Examen 8", true, 2, 4);
-INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/06/20", "Examen 9", true, 2, 1);
-INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/06/15", "Examen 10", true, 2, 2);
-INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/06/16", "Examen 11", true, 2, 3);
-INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2021/03/07", "Examen 12", true, 2, 4);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/10/20", "Exam 1 PSP", true, 1, 1);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/10/20", "Exam 2 PSP", true, 1, 1);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/08/19", "Exam 1 SGE", true, 1, 2);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/10/20", "Exam 1 DI", true, 1, 3);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/10/20", "Exam 2 DI", true, 1, 3);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/10/20", "Exam 1 AAD", true, 1, 4);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/10/20", "Exam 2 AAD", true, 1, 4);
+
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/10/20", "Exam 1 PSP", true, 2, 1);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/10/20", "Exam 2 PSP", true, 2, 1);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/08/19", "Exam 1 SGE", true, 2, 2);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/10/20", "Exam 1 DI", true, 2, 3);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/10/20", "Exam 2 DI", true, 2, 3);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/10/20", "Exam 1 AAD", true, 2, 4);
+INSERT INTO exams(date_register, name, visible, course_id, subject_id) VALUES ("2020/10/20", "Exam 2 AAD", true, 2, 4);
 
 
-INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 10, 1, 1);
-INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 5, 2, 1);
-INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 7, 3, 1);
 
-INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 5, 5, 2);
-INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 4, 6, 2);
-INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("1992/05/07", 7, 7, 2);
+INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("2020/10/20", 10, 1, 7);
+INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("2020/10/20", 5, 2, 7);
+INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("2020/10/20", 7, 3, 7);
 
+INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("2020/10/20", 5, 5, 2);
+INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("2020/10/20", 4, 6, 2);
+INSERT INTO user_exams(date_success, mark, exam_id, user_id) VALUES ("2020/10/20", 7, 7, 2);
 
+-- PSP 1
 INSERT INTO questions(name, exam_id) VALUES ("What is correct syntax for main method of a java class?", 1);
 INSERT INTO answers(answer, correct, question_id) VALUES ("A) public static int main(String[] args)", FALSE, 1);
 INSERT INTO answers(answer, correct, question_id) VALUES ("B) public int main(String[] args)", FALSE, 1);
@@ -185,6 +187,193 @@ INSERT INTO answers(answer, correct, question_id) VALUES ("A) JVM invokes the th
 INSERT INTO answers(answer, correct, question_id) VALUES ("B) Main application running the thread.", FALSE, 5);
 INSERT INTO answers(answer, correct, question_id) VALUES ("C) start() method of the thread class.", FALSE, 5);
 INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 5);
+
+-- PSP 2
+INSERT INTO questions(name, exam_id) VALUES ("Which of this methods cause a thread to stop", 2);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) Thread.start() ", FALSE, 6);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) Thread.run()", FALSE, 6);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) Thread.sleep()", TRUE, 6);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 6);
+
+INSERT INTO questions(name, exam_id) VALUES ("Choose the correct option about TCP protocol", 2);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) Is connection-oriented", TRUE, 7);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) Is not connection-oriented", FALSE, 7);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) Works fine with streamings", FALSE, 7);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 7);
+
+INSERT INTO questions(name, exam_id) VALUES ("What is the correct layers of OSI's Model", 2);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) Application, Presentation, Session, Network and Phisical", FALSE, 8);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) Application, Presentation, Session, Transport, Network, Data link and Physical", TRUE, 8);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) Application, Presentation, Session, Transport, Network and Physical", FALSE, 8);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 8);
+
+INSERT INTO questions(name, exam_id) VALUES ("Which linux command can be used to see all the active processes?", 2);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) ps.", TRUE, 9);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) whoami.", FALSE, 9);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) ls -l.", FALSE, 9);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 9);
+
+INSERT INTO questions(name, exam_id) VALUES ("Following the OSI Model the TCP protocol belongs to.", 2);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) Application layer.", FALSE, 10);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) Session layer.", FALSE, 10);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) Transport layer", TRUE, 10);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 10);
+
+-- SGE 1
+INSERT INTO questions(name, exam_id) VALUES ("What is the Odoo community version license", 3);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) MIT ", FALSE, 11);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) GPL", FALSE, 11);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) LGPLv3", TRUE, 11);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 11);
+
+INSERT INTO questions(name, exam_id) VALUES ("Does Odoo include CRM?", 3);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) Yes, It does", TRUE, 12);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) No, It does not", FALSE, 12);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) Yes, but not on community version", FALSE, 12);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 12);
+
+INSERT INTO questions(name, exam_id) VALUES ("Odoo modules can be programmed using", 3);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) Java", FALSE, 13);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) Python", TRUE, 13);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) Scala", FALSE, 13);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 13);
+
+INSERT INTO questions(name, exam_id) VALUES ("Which DBMS does Odoo use?", 3);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) MySQL.", FALSE, 14);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) Oracle.", FALSE, 14);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) PostgreSQL.", TRUE, 14);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 14);
+
+INSERT INTO questions(name, exam_id) VALUES ("The first version of Odoo is.", 3);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) 8.8.", FALSE, 15);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) 8.0.", TRUE, 15);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) 6", FALSE, 15);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 15);
+
+-- DI 1
+INSERT INTO questions(name, exam_id) VALUES ("Who is visual studio's developer?", 4);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) Microsoft.", TRUE, 16);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) Oracle.", FALSE, 16);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) OLC", FALSE, 16);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 16);
+
+INSERT INTO questions(name, exam_id) VALUES ("Operator used to get the remainder of a division", 4);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) MODULUS", FALSE, 17);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) MOD", TRUE, 17);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) //", FALSE, 17);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 17);
+
+INSERT INTO questions(name, exam_id) VALUES ("Method used to cast to an Integer", 4);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) CINT", TRUE, 18);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) CINTEGER", FALSE, 18);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) CI", FALSE, 18);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 18);
+
+INSERT INTO questions(name, exam_id) VALUES ("Which is the correct for of For loop?", 4);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) For - To - Step - Exit For.", TRUE, 19);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) For - In.", FALSE, 19);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) For(i = 0; i < length; i++).", FALSE, 19);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 19);
+
+INSERT INTO questions(name, exam_id) VALUES ("How can the execution of a method be escaped.", 4);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) Escape.", FALSE, 20);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) Bye.", FALSE, 20);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) Return", TRUE, 20);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 20);
+
+-- DI 2
+INSERT INTO questions(name, exam_id) VALUES ("Name of the event that handles mouse clicks", 5);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) Click.", TRUE, 21);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) MouseClick.", FALSE, 21);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) OnClick", FALSE, 21);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 21);
+
+INSERT INTO questions(name, exam_id) VALUES ("Keyword used to obtain and develop the methods of a parent class", 5);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) Inherit", FALSE, 22);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) Implements", FALSE, 22);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) Inherits", TRUE, 22);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 22);
+
+INSERT INTO questions(name, exam_id) VALUES ("Expression used to make a form be a mdi container", 5);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) isMdiContainerParent = True", FALSE, 23);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) isMdiContainer = True", TRUE, 23);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) isMdiParent = True", FALSE, 23);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 23);
+
+INSERT INTO questions(name, exam_id) VALUES ("Method used to make a form visible", 5);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) show()", TRUE, 24);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) display()", FALSE, 24);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) present().", FALSE, 24);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 24);
+
+INSERT INTO questions(name, exam_id) VALUES ("A constructor can be defined by using.", 5);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) Constructor().", FALSE, 25);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) Public Constructor().", FALSE, 25);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) Public Sub New() ", TRUE, 25);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 25);
+
+-- AAD 1
+INSERT INTO questions(name, exam_id) VALUES ("Java API used to connect with databases", 6);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) JDBAPI.", FALSE, 26);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) JDBC.", TRUE, 26);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) JAVADB", FALSE, 26);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 26);
+
+INSERT INTO questions(name, exam_id) VALUES ("Java libraries that can be used to work with files", 6);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) io", FALSE, 27);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) nio", FALSE, 27);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) noi", FALSE, 27);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) A and B.", TRUE, 27);
+
+INSERT INTO questions(name, exam_id) VALUES ("Java class used to create a db connection", 6);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) Conn", FALSE, 28);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) Connection", TRUE, 28);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) EntablishConnection", FALSE, 28);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 28);
+
+INSERT INTO questions(name, exam_id) VALUES ("Class used to execute sql sentences.", 6);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) Statement", FALSE, 29);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) Sentence", FALSE, 29);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) PreparedStatement.", FALSE, 29);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) A and C.", TRUE, 29);
+
+INSERT INTO questions(name, exam_id) VALUES ("Contains the result of the query.", 6);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) ResultSet.", TRUE, 30);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) Result.", FALSE, 30);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) ResultList.", FALSE, 30);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 30);
+
+-- AAD 2
+INSERT INTO questions(name, exam_id) VALUES ("Select the correct answer about Hibernate.", 7);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) Can be used to query tables.", FALSE, 31);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) Hibernate is an object-relational mapping tool for the Java programming language.", FALSE, 31);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) is a JPA implementation", FALSE, 31);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) All are correct.", TRUE, 31);
+
+INSERT INTO questions(name, exam_id) VALUES ("Hibernate sql inpired language.", 7);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) HQL", TRUE, 32);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) Hibernate querying", FALSE, 32);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) HSQL", FALSE, 32);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 32);
+
+INSERT INTO questions(name, exam_id) VALUES ("Name of the DBSM used to work with Objects.", 7);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) DB4O", FALSE, 33);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) DBO", FALSE, 33);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) DBObjects", TRUE, 33);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 33);
+
+INSERT INTO questions(name, exam_id) VALUES ("Select the correct answer about eXistdb.", 7);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) works with a database", FALSE, 34);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) NoSQL", TRUE, 34);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) Developed in Python.", FALSE, 34);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) None of the above.", FALSE, 34);
+
+INSERT INTO questions(name, exam_id) VALUES ("Query languages used in XML databases.", 7);
+INSERT INTO answers(answer, correct, question_id) VALUES ("A) XPath.", FALSE, 35);
+INSERT INTO answers(answer, correct, question_id) VALUES ("B) XSelect.", FALSE, 35);
+INSERT INTO answers(answer, correct, question_id) VALUES ("C) XQuery.", FALSE, 35);
+INSERT INTO answers(answer, correct, question_id) VALUES ("D) A and C are correct.", TRUE, 35);
+
 
 -- PSP Themes
 INSERT INTO topics (description, name, subject_id) VALUES ("The execution of a process implies that the same at the moment of execution uses the entire processor and with the allocated memory space. In multitasking systems, processes alternate, and when one frees the processor so that another can run, it also frees the allocated memory.", "UT 1. Multithreaded and multithreaded programming" , 1);
@@ -240,7 +429,7 @@ INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Loop conditions", "
 INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Python functions", "https://moodle.iescierva.net/pluginfile.php/62233/mod_resource/content/0/Python-funciones.pdf", 8);
 
 -- DI Topic-content
-INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Introduction to Visual Studio .NET", "https://moodle.iescierva.net/pluginfile.php/27421/mod_resource/content/1/1IntroduccionNet.pdf", 9);
+INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Introduction to Visual Studio .NET", "https://firebasestorage.googleapis.com/v0/b/olc-imgs.appspot.com/o/pdfs%2Fdi%2Fut1%2F1IntroduccionNet.pdf?alt=media", 9);
 INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Elements of language. Variables and data structures", "https://moodle.iescierva.net/pluginfile.php/27422/mod_resource/content/1/2ElementosLeng.pdf", 10);
 INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Loops and decision structures", "https://moodle.iescierva.net/pluginfile.php/27474/mod_resource/content/2/3.-Buclesyestructurasdedecision.pdf", 11);
 INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Introduction to Windows Forms", "https://moodle.iescierva.net/pluginfile.php/27752/mod_resource/content/3/4.-WindowsForms.pdf-", 12);
