@@ -11,11 +11,11 @@ public class ExamQuestionAnswerDto implements Serializable {
 
 	private QuestionDto question;
 
-	private List<Answer> answer;
+	private List<Answer> answers;
 
 	public ExamQuestionAnswerDto(QuestionDto question, List<Answer> answer) {
 		this.question = question;
-		this.answer = answer;
+		this.answers = answer;
 	}
 
 	public QuestionDto getQuestion() {
@@ -26,12 +26,12 @@ public class ExamQuestionAnswerDto implements Serializable {
 		this.question = question;
 	}
 
-	public List<Answer> getAnswer() {
-		return answer;
+	public List<Answer> getAnswers() {
+		return answers;
 	}
 
-	public void setAnswer(List<Answer> answer) {
-		this.answer = answer;
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
 	}
 
 }
