@@ -22,7 +22,9 @@ import com.ramonmr95.tiky.olc.entities.Question;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
 import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
 import com.ramonmr95.tiky.olc.parsers.JsonParser;
+import com.ramonmr95.tiky.olc.services.interfaces.IAnswerService;
 import com.ramonmr95.tiky.olc.services.interfaces.IExamService;
+import com.ramonmr95.tiky.olc.services.interfaces.IQuestionService;
 
 @RestController
 @RequestMapping("/api/exams")
@@ -30,6 +32,12 @@ public class ExamController {
 
 	@Autowired
 	private IExamService examService;
+
+	@Autowired
+	private IQuestionService questionService;
+
+	@Autowired
+	private IAnswerService answerService;
 
 	private JsonParser parser = new JsonParser();
 
@@ -62,6 +70,8 @@ public class ExamController {
 			return new ResponseEntity<>(newExam, HttpStatus.CREATED);
 		} catch (EntityValidationException e) {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.BAD_REQUEST);
+		} catch (DataNotFoundException e) {
+			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
 		}
 	}
 
@@ -111,7 +121,7 @@ public class ExamController {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 	@GetMapping("/not-done")
 	public ResponseEntity<?> listAllExamsNotDoneByUserIdAndCourseId(@RequestParam(name = "user_id") Long userId,
 			@RequestParam(name = "course_id") Long courseId) {
@@ -120,7 +130,27 @@ public class ExamController {
 			return new ResponseEntity<>(exams, HttpStatus.OK);
 		} catch (DataNotFoundException e) {
 			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
-		}	
+		}
+	}
+
+	@PostMapping("/create/question")
+	public ResponseEntity<?> createQuestion(@RequestParam(name = "exam_id") Long id,
+			@RequestBody ExamQuestionAnswerDto question) {
+		try {
+			Exam exam = this.examService.findOne(id);
+			Question q = question.getQuestion().convertToEntity();
+			q.setExam(exam);
+			List<Answer> answers = question.getAnswers();
+			Question newQ = this.questionService.createQuestion(q);
+			for (Answer answer : answers) {
+				answer.setQuestion(newQ);
+				this.answerService.createAnswer(answer);
+			}
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (DataNotFoundException e) {
+			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
+		}
+
 	}
 
 }
