@@ -27,5 +27,7 @@ public interface ISubjectService {
 	public List<TopicContent> findTopicContentByTopicId(Long name);
 
 	List<Topic> findAllTopics();
+	
+	public Subject findByName(String name) throws DataNotFoundException;
 
 }

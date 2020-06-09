@@ -48,6 +48,19 @@ public class SubjectServiceImpl implements ISubjectService {
 
 		throw new DataNotFoundException("Error Subject id is required");
 	}
+	
+	@Transactional(readOnly = true)
+	@Override
+	public Subject findByName(String name) throws DataNotFoundException {
+		Subject subject = this.subjectDao.findBySubjectName(name);
+		if (subject != null) {
+			return subject;
+		}
+
+		throw new DataNotFoundException("Cannot find any subject with name: " + name);
+	}
+	
+	
 
 	@Transactional
 	@Override
