@@ -53,6 +53,17 @@ public class SubjectController {
 		}
 
 	}
+	
+	@GetMapping("/name")
+	public ResponseEntity<?> getSubjectName(@RequestParam String name) {
+		try {
+			Subject sbj = this.subjectService.findByName(name);
+			return new ResponseEntity<>(sbj, HttpStatus.OK);
+		} catch (DataNotFoundException e) {
+			return new ResponseEntity<>(this.parser.parseJsonToMap(e.getMessage()), HttpStatus.NOT_FOUND);
+		}
+
+	}
 
 	@PostMapping("/create")
 	public ResponseEntity<?> createSubject(@RequestBody Subject sbj) {

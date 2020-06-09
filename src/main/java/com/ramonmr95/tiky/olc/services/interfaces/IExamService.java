@@ -14,7 +14,7 @@ public interface IExamService {
 
 	public Exam findOne(Long id) throws DataNotFoundException;
 
-	public Exam save(Exam exam) throws EntityValidationException;
+	public Exam save(Exam exam) throws EntityValidationException, DataNotFoundException;
 
 	public Exam update(Exam exam, Long id) throws EntityValidationException, DataNotFoundException;
 

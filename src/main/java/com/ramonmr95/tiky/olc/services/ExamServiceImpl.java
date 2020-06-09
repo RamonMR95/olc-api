@@ -12,8 +12,11 @@ import com.ramonmr95.tiky.olc.entities.Question;
 import com.ramonmr95.tiky.olc.exceptions.DataNotFoundException;
 import com.ramonmr95.tiky.olc.exceptions.EntityValidationException;
 import com.ramonmr95.tiky.olc.repositories.IExamDao;
+import com.ramonmr95.tiky.olc.services.interfaces.IAnswerService;
 import com.ramonmr95.tiky.olc.services.interfaces.ICourseService;
 import com.ramonmr95.tiky.olc.services.interfaces.IExamService;
+import com.ramonmr95.tiky.olc.services.interfaces.IQuestionService;
+import com.ramonmr95.tiky.olc.services.interfaces.ISubjectService;
 import com.ramonmr95.tiky.olc.services.interfaces.IUserService;
 import com.ramonmr95.tiky.olc.validators.EntityValidator;
 
@@ -28,6 +31,15 @@ public class ExamServiceImpl implements IExamService {
 
 	@Autowired
 	private ICourseService courseService;
+
+	@Autowired
+	private ISubjectService subjectService;
+
+	@Autowired
+	private IAnswerService answerService;
+
+	@Autowired
+	private IQuestionService questionService;
 
 	private EntityValidator<Exam> entityValidator = new EntityValidator<>();
 
@@ -49,7 +61,18 @@ public class ExamServiceImpl implements IExamService {
 
 	@Transactional
 	@Override
-	public Exam save(Exam exam) throws EntityValidationException {
+	public Exam save(Exam exam) throws EntityValidationException, DataNotFoundException {
+		if (exam.getCourse() == null) {
+			throw new EntityValidationException("The course is required");
+		}
+
+		if (exam.getSubject() == null) {
+			throw new EntityValidationException("The subject is required");
+		}
+
+		exam.setCourse(this.courseService.findOne(exam.getCourse().getId()));
+		exam.setSubject(this.subjectService.findByName(exam.getSubject().getSubjectName()));
+
 		if (this.entityValidator.isEntityValid(exam)) {
 			return this.examDao.save(exam);
 		}
@@ -63,7 +86,6 @@ public class ExamServiceImpl implements IExamService {
 
 		if (this.entityValidator.isEntityValid(exam)) {
 			updatedExam.setDate(exam.getDate());
-//			updatedExam.setMark(exam.getMark());
 			return this.examDao.save(updatedExam);
 		}
 		throw new EntityValidationException(this.entityValidator.getEntityValidationErrorsString(exam));
@@ -72,7 +94,19 @@ public class ExamServiceImpl implements IExamService {
 	@Transactional
 	@Override
 	public void delete(Long id) throws DataNotFoundException {
-		this.findOne(id);
+		Exam exam = this.findOne(id);
+		List<Question> questions = this.questionService.findByExam(exam);
+		if (questions != null) {
+			List<Answer> abq = null;
+			for (Question question : questions) {
+				abq = this.answerService.findByQuestion(question);
+				for (Answer answer : abq) {
+					this.answerService.delete(answer.getId());
+				}
+				this.questionService.delete(question.getId());
+			}
+			abq.clear();
+		}
 		this.examDao.deleteById(id);
 	}
 
