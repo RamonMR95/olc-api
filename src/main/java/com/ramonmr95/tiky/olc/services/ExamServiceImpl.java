@@ -96,7 +96,7 @@ public class ExamServiceImpl implements IExamService {
 	public void delete(Long id) throws DataNotFoundException {
 		Exam exam = this.findOne(id);
 		List<Question> questions = this.questionService.findByExam(exam);
-		if (questions != null) {
+		if (questions != null && !questions.isEmpty()) {
 			List<Answer> abq = null;
 			for (Question question : questions) {
 				abq = this.answerService.findByQuestion(question);
