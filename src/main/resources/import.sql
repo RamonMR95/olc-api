@@ -454,16 +454,13 @@ INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("XPath: XML Path lan
 INSERT INTO topic_content (subtitle, url, topic_id) VALUES ("Xquery", "https://firebasestorage.googleapis.com/v0/b/olc-imgs.appspot.com/o/pdfs%2FDAM%2FAAD%2FUT4%2FES_XQuery.pdf?alt=media", 16);
 
 -- New content
-INSERT INTO news (content, created_at, title, writer) VALUES ("Content1", "1992/05/07", "Title1", "Aenesidemus");
-INSERT INTO news (content, created_at, title, writer) VALUES ("Content2", "1992/05/07", "Title2", "Anaxilaus");
-INSERT INTO news (content, created_at, title, writer) VALUES ("Content3", "1992/05/07", "Title3", "Antoninus");
-INSERT INTO news (content, created_at, title, writer) VALUES ("Content4", "1992/05/07", "Title4", "Anniceris");
-INSERT INTO news (content, created_at, title, writer) VALUES ("Content5", "1992/05/07", "Title5", "Aristippus");
-INSERT INTO news (content, created_at, title, writer) VALUES ("Content6", "1992/05/07","Title6", "Aenesidemus");
-INSERT INTO news (content, created_at, title, writer) VALUES ("Content7", "1992/05/07", "Title7", "Anaxilaus");
-INSERT INTO news (content, created_at, title, writer) VALUES ("Content8", "1992/05/07","Title8", "Antoninus");
-INSERT INTO news (content, created_at, title, writer) VALUES ("Content9", "1992/05/07", "Title9", "Anniceris");
-INSERT INTO news (content, created_at, title, writer) VALUES ("Content10", "1992/05/07","Title10", "Aristippus");
+INSERT INTO news (content, created_at, title, writer) VALUES ("Content1", "2020/05/20","Title1", "Aenesidemus");
+INSERT INTO news (content, created_at, title, writer) VALUES ("we will be giving away a free ebook in 2020/06/16. Stay tuned!", "2020/05/21", "Free Ebook giveaway", "Anaxilaus");
+INSERT INTO news (content, created_at, title, writer) VALUES ("we will be giving away a free scholarship in 2020/06/17. Stay tuned!", "2020/05/22", "Free scholarship giveaway", "Antoninus");
+INSERT INTO news (content, created_at, title, writer) VALUES ("Monthly maintenance 2020/05/30 [8:00 UTC ~ 12:00 UTC]", "2020/05/23", "Maintenance", "Anniceris");
+INSERT INTO news (content, created_at, title, writer) VALUES ("I leave you the list of precautions you must take. Keep yourself safe: https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public.", "2020/05/24", "COVID-19", "Aristippus");
+INSERT INTO news (content, created_at, title, writer) VALUES ("We are adding ASIR to the course catalogue. Are you excited?", "2020/05/25", "New course coming out soon", "Aenesidemus");
+
 
 
 
